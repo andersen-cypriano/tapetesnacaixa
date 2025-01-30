@@ -1,0 +1,444 @@
+{% set dados = page_category %}
+
+<div class="central">
+	<main class="block categorias">
+		<section id="departamentos" class="block">
+			{{ include('widgets/banners-21.html') }}
+			<nav class="mb-3" aria-label="breadcrumb">
+				<ol class="breadcrumb" itemprop="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+					<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+						<a href="{{ base }}/" itemprop="item">
+							<span itemprop="name">Página inicial</span>
+						</a>
+						<meta itemprop="position" content="1" />
+					</li>
+					<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+						<a href="{{ dados.page.cl1.url }}" itemprop="item">
+							<span itemprop="name">{{ dados.page.cl1.nome }}</span>
+						</a>
+						<meta itemprop="position" content="2" />
+					</li>
+					{% if dados.page.cl2.nome %}
+					<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+						<a href="{{ dados.page.cl2.url }}" itemprop="item">
+							<span itemprop="name">{{ dados.page.cl2.nome }}</span>
+						</a>
+						<meta itemprop="position" content="3" />
+					</li>
+					{% endif %}
+					{% if dados.page.cl3.nome %}
+					<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+						<a href="{{ dados.page.cl3.url }}" itemprop="item">
+							<span itemprop="name">{{ dados.page.cl3.nome }}</span>
+						</a>
+						<meta itemprop="position" content="4" />
+					</li>
+					{% endif %}
+				</ol>
+			</nav>
+			
+			{% if filiais|length >= 1 %}
+			<section id="filiais" class="block">
+				<h2 class="titulo mb-3">FORNECEDORES</h2>
+				<div class="block">
+					<div class="itens owl-auto owl-carousel owl-theme" data-items="4" data-responsive800="2" data-loop="false" data-margin="10">
+						{% for item in filiais %}
+						<div class="item">
+							<a href="{{ item.url_interna_matriz }}"><img src="{{ item.logo }}" alt="{{ item.nome }}" class="img-fluid" /></a>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+			{% endif %}
+
+			<div class="d-flex d-md-none mobile-filtro">
+				<div class="item">
+					<a href="" class="action filtrar-por"><i class="fa fa-filter fa-fw"></i> Filtrar</a>
+				</div>
+				<div class="item">
+					<a href="" class="action ordenar-por"><i class="fa fa-sort fa-fw"></i> Ordenar</a>
+					<div class="drop-filtro">
+						{% for item in dados.filters %}
+						<a href="{{ item.data_url }}" class="{{ item.selected ? ' selected' : '' }}">{{ item.name }}</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+
+			<div class="mobile-filtro-suspended d-block d-md-none">
+				<div class="cover-filtro"></div>
+				<div class="drop-filtro">
+					<div class="drop-header">
+						<h3>FILTRAR</h3>
+						<span class="fechar">&times;</span>
+					</div>
+					<div class="drop-list">
+						{% if dados.prices.items|length > 0 or extra.vl1 %}
+						<div class="listing vars">
+							<h3 class="t block">
+								<span class="float-left">POR PREÇO</span>
+								{% if extra.vl1 %}
+								<span class="float-right"><a href="{{ dados.prices.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+								{% endif %}
+							</h3>
+							<div class="b">
+								{% for item in dados.prices.items %}
+								{% set texto_valor = item.de == "0.01" ? ("até R$"~item.ate|valor) : ("de R$"~item.de|valor~" até R$"~item.ate|valor) %}
+								<a href="{{ item.url }}"{{ extra.vl1 == item.de ? ' class="active"' : '' }}>{{ texto_valor }}</a>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+						{% if dados.colors.items|length >= 1 %}
+						<div class="listing colors">
+							<h3 class="t block">
+								<span class="float-left">COR</span>
+								{% if extra.cor %}
+								<span class="float-right"><a href="{{ dados.colors.url_all }}" style="font-size: 10px;">Ver todos </a></span>
+								{% endif %}
+							</h3>
+							<div class="b">
+								{% for cor in dados.colors.items %}
+								<a href="{{ cor.url }}"{{ extra.cor == cor.id ? ' class="active"' : '' }}>{{ cor.nome }}</a>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+						{% for variacao in dados.variations %}
+						<div class="listing vars">
+							<h3 class="t block">
+								<span class="float-left">{{ variacao.nome|upper }}</span>
+								{% if extra.var %}
+								<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+								{% endif %}
+							</h3>
+							<div class="b">
+								{% for item in variacao.items %}
+								<a href="{{ item.url }}"{{ extra.var == item.id ? ' class="active"' : '' }}>{{ item.valor }}</a>
+								{% endfor %}
+							</div>
+						</div>
+						{% endfor %}
+
+						{% for variacao in dados.attributes %}
+						<div class="listing vars">
+							<h3 class="t block">
+								<span class="float-left">{{ variacao.nome|upper }}</span>
+								{% if extra.attr %}
+								<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+								{% endif %}
+							</h3>
+							<div class="b">
+								{% for item in variacao.items %}
+								<a href="{{ item.url }}"{{ extra.attr == item.id ? ' class="active"' : '' }}>{{ item.nome }}</a>
+								{% endfor %}
+							</div>
+						</div>
+						{% endfor %}
+
+						{% if dados.brands.items|length >= 1 %}
+						<div class="listing vars">
+							<h3 class="t block">
+								<span class="float-left">MARCA</span>
+								{% if extra.b %}
+								<span class="float-right"><a href="{{ dados.brands.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+								{% endif %}
+							</h3>
+							<div class="b">
+								{% for item in dados.brands.items %}
+								<a href="{{ item.url }}"{{ extra.b == item.id ? ' class="active"' : '' }}>{{ item.marca }}</a>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+
+						{% if dados.categories_l2|length >= 1 %}
+						<div class="listing">
+							<h3 class="t"><span class="c">{{ dados.page.cl1.nome|upper }}</span></h3>
+							<div class="b">
+								{% for categoria in dados.categories_l2 %}
+								<a href="{{ categoria.url }}"{{ extra.clevel2 and extra.clevel2 in categoria.url  ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+						{% if dados.categories_l3|length >= 1 %}
+						<div class="listing">
+							<h3 class="t"><span class="c">{{ dados.page.cl2.nome|upper }}</span></h3>
+							<div class="b">
+								{% for categoria in dados.categories_l3 %}
+								<a href="{{ categoria.url }}"{{ extra.clevel3 and extra.clevel3 in categoria.url ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
+								{% endfor %}
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+
+			{% if geral.hasPerformaAI %}
+			<performa></performa>
+			{% endif %}
+
+			<h2 class="titulo my-0 mb-3">{{ dados.page.title|upper }}</h2>
+			<p class="text-muted mb-3 d-block d-md-none"><span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span></p>
+
+			{% if dados.kits|length > 0 %}
+			<div class="block prod-kits">
+				<div class="row justify-content-center">
+					{% for kit in dados.kits %}
+					<div class="col-md-3 mb-4 text-center">
+						<div class="block item">
+							<a href="{{ kit.url }}">
+								<div class="foto">
+									<img src="{{ kit.foto }}" alt="{{ kit.titulo }}" class="img-cover" />
+								</div>
+							</a>
+							<div class="det">
+								<h3 class="t">{{ kit.titulo }} </h3>
+								<p class="mb-2">{{ kit.produtos ~ plural(kit.produtos, ' ite', 'm', 'ns') }}</p>
+								<div class="valores">
+									{% if kit.isPromo %}
+									<p class="valor_de">R${{ kit.valor_base|valor }}</p>
+									{% endif %}
+									<p class="valor_por">R${{ kit.valor_final|valor }}</p>
+								</div>
+								<a href="{{ kit.url }}" class="bt-comprar">COMPRAR O KIT</a>
+							</div>
+							{% if kit.frete_gratis %}
+							<p class="frete-gratis"><span class="px-2 py-1">FRETE GRÁTIS</span></p>
+							{% endif %}
+							{% if kit.desconto_percentual %}
+							<span class="desconto">-{{ kit.desconto_percentual|round(0, 'floor') }}%</span>
+							{% endif %}
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<h2 class="titulo my-0 mb-3">PRODUTOS</h2>
+			{% endif %}
+
+			<div class="row d-none d-md-flex">
+				<div class="col-md-6">
+					<span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span>
+				</div>
+				<div class="col-md-6 text-md-right">
+					<span>Ordenar por</span>
+					<select class="border border-dark p-1 mx-2 orderby" style="width: 150px; font-size: 12px;">
+						{% for item in dados.filters %}
+						<option value="{{ item.value }}" data-url="{{ item.data_url }}"{{ item.selected ? ' selected' : '' }}>{{ item.name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+			</div>
+
+			{% if dados.page.hasMenuLateral %}
+			<div class="cln p d-none d-md-block">
+				<div class="block d-block d-md-none text-center filtrar">
+					<h4 class="t"><span class="border border-dark p-2 d-inline-block">FILTRAR <i class="fa fa-caret-down"></i></span></h4>
+				</div>
+				<div class="block d-none d-md-block animated fadeIn filtros">
+					{% if dados.prices.items|length > 0 or extra.vl1 %}
+					<div class="listing vars">
+						<h3 class="t block">
+							<span class="float-left">POR PREÇO</span>
+							{% if extra.vl1 %}
+							<span class="float-right"><a href="{{ dados.prices.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+							{% endif %}
+						</h3>
+						<div class="b">
+							{% for item in dados.prices.items %}
+							{% set texto_valor = item.de == "0.01" ? ("até R$"~item.ate|valor) : ("de R$"~item.de|valor~" até R$"~item.ate|valor) %}
+							<a href="{{ item.url }}"{{ extra.vl1 == item.de ? ' class="active"' : '' }}>{{ texto_valor }}</a>
+							{% endfor %}
+						</div>
+					</div>
+					{% endif %}
+					{% if dados.categories_l2|length >= 1 %}
+					<div class="listing">
+						<h3 class="t"><span class="c">{{ dados.page.cl1.nome|upper }}</span></h3>
+						<div class="b">
+							{% for categoria in dados.categories_l2 %}
+							<a href="{{ categoria.url }}"{{ extra.clevel2 and extra.clevel2 in categoria.url  ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
+							{% endfor %}
+						</div>
+					</div>
+					{% endif %}
+
+					{% if dados.categories_l3|length >= 1 %}
+					<div class="listing">
+						<h3 class="t"><span class="c">{{ dados.page.cl2.nome|upper }}</span></h3>
+						<div class="b">
+							{% for categoria in dados.categories_l3 %}
+							<a href="{{ categoria.url }}"{{ extra.clevel3 and extra.clevel3 in categoria.url ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
+							{% endfor %}
+						</div>
+					</div>
+					{% endif %}
+
+					{% if dados.colors.items|length >= 1 %}
+					<div class="listing colors">
+						<h3 class="t block">
+							<span class="float-left">COR</span>
+							{% if extra.cor %}
+							<span class="float-right"><a href="{{ dados.colors.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+							{% endif %}
+						</h3>
+						<div class="b">
+							{% for cor in dados.colors.items %}
+							<a href="{{ cor.url }}"{{ extra.cor == cor.id ? ' class="active"' : '' }}>{{ cor.nome }}</a>
+							{% endfor %}
+						</div>
+					</div>
+					{% endif %}
+
+					{% for variacao in dados.variations %}
+					<div class="listing vars">
+						<h3 class="t block">
+							<span class="float-left">{{ variacao.nome|upper }}</span>
+							{% if extra.var %}
+							<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+							{% endif %}
+						</h3>
+						<div class="b">
+							{% for item in variacao.items %}
+							<a href="{{ item.url }}"{{ extra.var == item.id ? ' class="active"' : '' }}>{{ item.valor }}</a>
+							{% endfor %}
+						</div>
+					</div>
+					{% endfor %}
+
+					{% for variacao in dados.attributes %}
+					<div class="listing vars">
+						<h3 class="t block">
+							<span class="float-left">{{ variacao.nome|upper }}</span>
+							{% if extra.var %}
+							<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+							{% endif %}
+						</h3>
+						<div class="b">
+							{% for item in variacao.items %}
+							<a href="{{ item.url }}"{{ extra.attr == item.id ? ' class="active"' : '' }}>{{ item.nome }}</a>
+							{% endfor %}
+						</div>
+					</div>
+					{% endfor %}
+
+					{% if dados.brands.items|length >= 1 %}
+					<div class="listing vars">
+						<h3 class="t block">
+							<span class="float-left">MARCA</span>
+							{% if extra.b %}
+							<span class="float-right"><a href="{{ dados.brands.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+							{% endif %}
+						</h3>
+						<div class="b">
+							{% for item in dados.brands.items %}
+							<a href="{{ item.url }}"{{ extra.b == item.id ? ' class="active"' : '' }}>{{ item.marca }}</a>
+							{% endfor %}
+						</div>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+			{% endif %}
+
+			<div class="cln s{{ not dados.page.hasMenuLateral ? ' w-100' : ''}}">
+				{% if dados.page.banner %}
+				<div class="block mb-4 text-center">
+					{{ dados.page.banner_raw|raw }}
+				</div>
+				{% endif %}
+				{% if dados.page.infotexto %}
+				<div id="seo_info" class="texto mb-4">
+					{{ dados.page.infotexto|raw }}
+				</div>
+				{% endif %}
+
+				<!--
+				<div class="produtos">
+					<div class="row">
+						{% for produto in dados.products.data %}
+						<div class="{{dados.page.hasMenuLateral ? 'col-md-4' : 'col-md-3' }} {{ dados.page.mobile.coluna_dupla ? 'col-6' : 'col-12' }}">
+							{{ store.productBoxDefault(produto) }}
+						</div>
+						{% else %}
+						<div class="col">
+							<div class="alert alert-info text-center">
+								<p>Nenhum produto encontrado no momento em: {{ dados.page.title }}</p>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				-->
+
+				<div class="produtos">
+					<div class="row">
+						{% for produto in dados.products.data %}
+						<div class="{{dados.page.hasMenuLateral ? 'col-md-4' : 'col-md-3' }} {{ dados.page.mobile.coluna_dupla ? 'col-6' : 'col-12' }}">
+							{{ include('widgets/box-do-produto.html') }}
+						</div>
+						{% else %}
+						<div class="col">
+							<div class="alert alert-info text-center">
+								<p>Nenhum produto encontrado no momento em: {{ dados.page.title }}</p>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+
+				{% if dados.pagination.page_total > 1 %}
+				<div class="row divider mb-4">
+					<div class="col text-center">
+						{{ dados.pagination.page_prev ? ('<a href="' ~ dados.pagination.page_prev ~ '" class="btn btn-sm btn-outline-dark"><i class="fa fa-caret-left fa-fw"></i> Página anterior</a>')|raw : '<span class="btn btn-sm btn-outline-dark disabled"><i class="fa fa-caret-left fa-fw"></i> Página anterior</span>' }}
+						<select class="border border-dark mx-1" onChange="location.href=this.value;" style="height: 31px; display: inline-block; vertical-align: middle; padding: 0 5px; background-color: transparent;">
+							{% for page in dados.pagination.page_all %}
+							<option value="{{ page.url }}"{{ dados.pagination.page_atual == page.page ? ' selected' : '' }}>{{ page.page }}</option>
+							{% endfor %}
+						</select>
+						{{ dados.pagination.page_next ? ('<a href="' ~ dados.pagination.page_next ~ '" class="btn btn-sm btn-outline-dark"><i class="fa fa-caret-right fa-fw"></i> Próxima página</a>')|raw : '<span class="btn btn-sm btn-outline-dark disabled"><i class="fa fa-caret-right fa-fw"></i> Próxima página</span>' }}
+					</div>
+				</div>
+				{% endif %}
+			</div>
+			{{ include('widgets/banners-23.html') }}
+
+			{% if geral.hasSmartHint %}
+			<div id="smarthint-position-1"></div>
+			<div id="smarthint-position-2"></div>
+			<div id="smarthint-position-3"></div>
+			<div id="smarthint-position-4"></div>
+			<div id="smarthint-position-5"></div>
+			{% endif %}
+
+			{% if geral.hasPerformaAI %}
+			<performa></performa>
+			{% endif %}
+		</section>
+
+		<script>
+			$(function(){
+				{% if geral.hasSmartHint %}
+				SmartHint.Call('setPage',{type:'category', data: {content: '{{ dados.page.title }}'} });
+				 {% endif %}
+
+				 $('.filtrar').click(function(){
+					 $(this).toggleClass('mb-4');
+					 $('.filtros').toggleClass('d-none');
+				 });
+
+				  $('.orderby').change(function(){
+					  var url = $('option:selected', this).data('url');
+					  location.href = url;
+				  });
+				 });
+		</script>
+
+		{{ dados.page.seo_scripts|raw }}
+	</main>
+</div>

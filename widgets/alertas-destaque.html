@@ -1,0 +1,17 @@
+{% set alertas = store.featuredIcon() %}
+
+<div id="alerts">
+	<div class="central">
+		{% for alerta in alertas %}
+			{% set icone = alerta.icone_tipo == '1' ?
+				'<i class="fa ' ~ alerta.icone ~ '" style="color: ' ~ alerta.cor_icone ~ '"></i>' :
+				'<img src="' ~ alerta.icone ~ '" alt="' ~ alerta.nome ~ '" />'
+			%}
+			{% if alerta.link %}
+			<p><a href="{{ alerta.link }}" target="{{ alerta.target }}">{{ icone|raw }} <span>{{ alerta.nome|raw }}</span></a></p>
+			{% else %}
+			<p style="background-color: {{ alerta.cor_fundo }}">{{ icone|raw }} <span>{{ alerta.nome|raw }}</span></p>
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>

@@ -1,0 +1,23 @@
+{% set blog_posts = store.blogPosts() %}
+
+{% if blog_posts|length >= 1 %}
+<section class="block blog-posts">
+	<div class="central">
+		<h2 class="titulo">NOVIDADES DO BLOG</h2>
+		<section class="row justify-content-center">
+			{% for post in blog_posts %}
+				<article class="col-md-3 col-sm-6 text-center">
+					<div class="block item">
+						<a href="{{ post.blog_url }}/" target="_blank">
+							<div class="foto">
+								<img src="https://sistema.wbuy.com.br/img/loading-heart.svg" data-src="{{ post.imagem }}" alt="{{ post.titulo }}" class="img-cover lazy">
+							</div>
+							<h4 class="t">{{ post.titulo }}</h4>
+						</a>
+					</div>
+				</article>
+			{% endfor %}
+		</section>
+	</div>
+</section>
+{% endif %}

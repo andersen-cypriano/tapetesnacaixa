@@ -1,0 +1,121 @@
+{% set paginasInstitucional = store.dynamicPages({local:'1', text_upper:true, onBase:true}) %}
+{% set paginasAjuda = store.dynamicPages({local:'2', text_upper:true, onBase:true}) %}
+{% set infoPages = store.getInfoPages({text_upper:true}) %}
+{% set footerText = store.footerText() %}
+{% set redesSociais = store.socialIcons() %}
+{% set widgetfb = store.widgetFacebook() %}
+{% set pagamentos = store.paymentBrand() %}
+{% set selos = store.securitySeal() %}
+{% set widgetNews = store.widgetNews() %}
+
+<footer class="block">
+	{% if page != 'shop_cart' %}
+	<section id="base" class="block">
+        <div class="central">
+            <div class="blc">
+			{% if not global.var_bloquear_cadastros %}
+                <h3 class="t">SUA CONTA</h3>
+                <div class="links">
+                    <a href="central/dados/">MINHA CONTAÇÃO</a>
+				{% if not global.var_mostruario %}
+                    <a href="central/pedidos/">MINHAS COMPRAS</a>
+                    <a href="carrinho/">MEU CARRINHO</a>
+                {% endif %}
+                </div>
+            {% endif %}
+                <h3 class="t">INSTITUCIONAL</h3>
+                <div class="links">
+                    <a href="sobre/">SOBRE NÓS</a>
+					{% for page in paginasInstitucional %}
+						{{ page|raw }}
+					{% endfor %}
+                	<a href="fale-conosco/">FALE CONOSCO</a>
+                </div>
+            </div>
+            <div class="blc">
+                <h3 class="t">PRECISA DE AJUDA?</h3>
+                <div class="links">
+                {% for page in infoPages %}
+					{{ page|raw }}
+				{% endfor %}
+				{% for page in paginasAjuda %}
+                    {{ page|raw }}
+				{% endfor %}
+                {% if not global.var_mostruario %}
+                    <a href="central/pedidos/">ACOMPANHAR MEUS PEDIDOS</a>
+                {% endif %}
+                </div>
+            </div>
+        {% if footerText.base != '' %}
+            <div class="blc">
+                <h3 class="t">ATENDIMENTO</h3>
+                <div class="txt">
+                	{{ footerText.base|raw }}
+                </div>
+            </div>
+        {% endif %}
+            <div class="social">
+			{% if redesSociais.raw|length >= 1 %}
+                <div class="links">
+				{% for item in redesSociais.raw %}
+					{{ item|raw }}
+				{% endfor %}
+                </div>
+            {% endif %}
+            {% if widgetfb %}
+                <div class="widget">
+					{{ widgetfb.raw|raw }}
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </section>
+	{% endif %}
+
+    <section id="secure" class="block">
+        <div class="central">
+		{% if pagamentos.brand|length >= 1 and not global.var_mostruario %}
+            <div class="pgto">
+                <h3 class="t">FORMAS DE PAGAMENTO</h3>
+                <div class="pagamentos">
+                	<div class="servicos">
+					{% for gateway in pagamentos.gateway %}
+						<span><img src="https://sistema.wbuy.com.br/img/loading-heart.svg" data-src="{{ gateway.icone }}" alt="Page com {{ gateway.nome }}" class="img-fluid lazy"></span>
+					{% endfor %}
+                    </div>
+                	<div class="itens">
+					{% for bandeira in pagamentos.brand %}
+                        <span title="{{ bandeira.nome }}"><img src="https://sistema.wbuy.com.br/img/loading-heart.svg" data-src="{{ bandeira.icone }}" alt="{{ bandeira.nome }}" class="lazy"></span>
+                    {% endfor %}
+	                </div>
+                </div>
+            </div>
+        {% endif %}
+            <div class="selos">
+                <h3 class="t">SEGURAN?A</h3>
+				{% for selo in selos %}
+					{{ selo|raw }}
+				{% endfor %}
+            </div>
+		{% if page != 'login' and page != 'shop_cart' and not global.var_desabilita_news %}
+            <div class="news">
+                <h3 class="t">{{ widgetNews.title }}</h3>
+                <div class="box">
+                    <p>{{ widgetNews.subtitle1 }}<br>{{ widgetNews.subtitle2 }}</p>
+                    <form id="frmNews" action="news_func.php" method="post" class="post">
+                        <input type="email" name="email" class="input-block-level" aria-label="Digite seu e-mail aqui" required placeholder="Digite seu e-mail aqui">
+                        <button type="submit">ME INSCREVER</button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </section>
+	{% if footerText.rodape != '' %}
+		<section id="rodape" class="block">
+			<div class="central">
+				{{ footerText.rodape|raw }}
+			</div>
+		</section>
+	{% endif %}
+</footer>

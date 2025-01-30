@@ -1,0 +1,7 @@
+{% set dados = store.pageProductsFull(extra) %}
+
+{% for produto in dados.products.data %}
+<div class="{{dados.page.hasMenuLateral ? 'col-md-4' : 'col-md-3' }} {{ dados.page.mobile.coluna_dupla ? 'col-12' : 'col-6' }}">
+	{{ include('widgets/box-do-produto.html') }}
+</div>
+{% endfor %}

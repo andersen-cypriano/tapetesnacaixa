@@ -1,0 +1,9 @@
+{% set bannerRodape = store.publicityBanner({tipo:'23', limit:'1', produto_id:produto_id}) %}
+
+{% if bannerRodape|length >= 1 %}
+<div class="central">
+    <div class="b_header mb-4{{ page == 'principal' ? ' i' : '' }}">
+        {{ bannerRodape[0].raw|raw }}
+    </div>
+</div>
+{% endif %}

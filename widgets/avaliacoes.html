@@ -1,0 +1,47 @@
+{% set avaliacoes = store.getRatings() %}
+
+{% if avaliacoes.items|length > 0 %}
+<section id="widget_avaliacoes" class="block mb-4">
+	<div class="central">
+		<h2 class="titulo">O QUE ESTÃO FALANDO DA GENTE</h2>
+		<div class="itens owl-carousel owl-theme px-3 mb-4">
+			{{ avaliacoes.raw|raw }}
+		</div>
+		<div class="row mb-4">
+			<div class="col text-center">
+				<a href="avaliacoes/" class="text-dark">Ver todas as avaliações</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+    $(function(){
+        $('#widget_avaliacoes .itens').owlCarousel({
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplayHoverPause: true,
+            loop: $('#widget_avaliacoes .itens .item').length > 3,
+            dots: true,
+            nav: false,
+            margin: 15,
+            animateOut: 'bounceOutLeft',
+            animateIn: 'bounceInRight',
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                598: {
+                    items: 2,
+                },
+                800: {
+                    items: 3,
+                },
+                1024:{
+                    items: 4,
+                }
+            }
+        });
+    });
+</script>
+{% endif %}

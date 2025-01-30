@@ -1,0 +1,84 @@
+{% set slogan = store.getSlogan() %}
+{% set vitrines = store.showcaseActiveIds() %}
+{% set videoHome = html.getHomeVideo() %}
+
+<section id="page_home" class="block">
+	{% include('widgets/home-slides.html') %}
+	
+	{% if slogan %}
+	<div id="slogan" class="mb-4">
+		<div class="central">
+			<p>{{ slogan }}</p>
+		</div>
+	</div>
+	{% endif %}
+	
+	{% if geral.hasPerformaAI %}
+	<performa></performa>
+	{% endif %}
+	
+	{{ include('widgets/alertas-destaque.html') }}
+	
+	{% if videoHome.posicionamento == 'top' %}
+		{{ include('widgets/widget-video-home.html') }}
+	{% endif %}
+	
+	{{ include('widgets/banners-25.html') }}
+	{{ include('widgets/banners-21.html') }}
+	
+	<section class="block">    
+		<div class="central">
+			{% if global.produtos_kits_posicao == '1' %}
+				<component data-modulo="kits" loading="false" data-shimmer="4"></component>
+			{% endif %}
+	
+			{% if vitrines|length >= 1 %}
+				{% if global.vitrine_visitados_posicao == '1' %}
+					<component data-modulo="produtos-visitados" loading="false" data-shimmer="4"></component>
+				{% endif %}
+				{% for vitrine in vitrines %}
+					<component data-modulo="vitrine" data-id="{{ vitrine.id }}" loading="false" data-shimmer="4"></component>
+				{% endfor %}
+				{% if global.vitrine_visitados_posicao == '2' %}
+					<component data-modulo="produtos-visitados" loading="false" data-shimmer="4"></component>
+				{% endif %}
+			{% else %}
+				<component data-modulo="lancamentos" loading="false" data-shimmer="4"></component>
+				{% if geral.hasSmartHint %}
+					<div id="smarthint-position-1"></div>
+					<div id="smarthint-position-2"></div>
+					<div id="smarthint-position-3"></div>
+					<div id="smarthint-position-4"></div>
+					<div id="smarthint-position-5"></div>
+				{% endif %}
+			{% endif %}
+			
+			{% if global.produtos_kits_posicao == '2' %}
+				<component data-modulo="kits" loading="false" data-shimmer="4"></component>
+			{% endif %}
+		</div>
+		
+		{% if videoHome.posicionamento == 'bottom' %}
+			{{ include('widgets/widget-video-home.html') }}
+		{% endif %}
+		
+		{{ include('widgets/avaliacoes.html') }}
+		{{ include('widgets/marcas.html') }}
+		{{ include('widgets/widget-instagram.html') }}
+		{{ include('widgets/widget-blog-posts.html') }}
+	</section>
+	
+	{{ include('widgets/banners-23.html') }}
+	
+	{% if geral.hasSmartHint %}
+	<script>
+	$(function(){
+		SmartHint.Call('setPage',{type:'home', data: {} });
+	});
+	</script>
+	{% endif %}
+	
+	{% if geral.hasPerformaAI %}
+	<performa></performa>
+	{% endif %}
+</section>

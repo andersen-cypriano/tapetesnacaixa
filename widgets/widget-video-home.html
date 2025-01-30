@@ -1,0 +1,51 @@
+{% if videoHome.video_url %}
+<section id="video-home">
+    <div class="{{ videoHome.video_class_largura }}">
+        {{ videoHome.html }}
+    </div>
+</section>
+{% endif %}
+
+{% if videoHome.youtube_api %}
+<script>
+var tag_video_home = document.createElement('script');
+tag_video_home.src = 'https://www.youtube.com/player_api';
+
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag_video_home, firstScriptTag);
+
+var player_video_home;
+var video_home_player_defaults = {
+    autoplay: 1,
+    autohide: 1,
+    modestbranding: 0,
+    rel: 0,
+    showinfo: 0,
+    controls: 0,
+    disablekb: 1,
+    enablejsapi: 0,
+    iv_load_policy: 3,
+};
+
+function onYouTubePlayerAPIReady(){
+    player_video_home = new YT.Player('ytvideohome', {
+        loop: 1,
+        events: {'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange},
+        playerVars: video_home_player_defaults,
+    });
+}
+
+function onPlayerReady(){
+    player_video_home.loadVideoById({
+        'videoId': '{{ videoHome.video_id }}',
+        'suggestedQuality': 'hd1080',
+    });
+    player_video_home.mute();
+}
+
+function onPlayerStateChange(e){
+    if(e.data === YT.PlayerState.ENDED)
+        player_video_home.playVideo();
+}
+</script>
+{% endif %}

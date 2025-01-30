@@ -1,0 +1,20 @@
+{% set slides = store.mainBanner() %}
+
+{% if slides.raw|length >= 1 %}
+<div class="{{ slides.width == 'block' ? 'block' : 'central' }}{{ slogan == '' ? ' mb-0' : '' }}">
+	<div id="slider" class="mb-0 owl-carousel owl-theme">
+		{% for slide in slides.items %}
+		<div class="item">
+			<div class="{{ slide.foto_mobile == '' ? 'block' : 'd-none d-md-block' }}">
+				{{ slide.desktop_raw|raw }}
+			</div>
+			{% if slide.foto_mobile %}
+			<div class="d-block d-md-none">
+				{{ slide.mobile_raw|raw }}
+			</div>
+			{% endif %}
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}

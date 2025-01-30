@@ -1,0 +1,43 @@
+{% set instagram = store.widgetInstagram() %}
+
+{% if instagram.token %}
+<section id="wid_instagram" class="block">
+	<h2 class="titulo"><i class="fa fa-instagram fa-fw"></i> {{ instagram.username }} </h2>
+	<div id="instafeed" class="row mx-0 justify-content-center align-items-center text-center"></div>
+</section>
+
+<script src="{{ base_system }}/jquery2/instafeed2.min.js"></script>
+
+<script>
+var accessToken = '{{ instagram.token }}';
+var instaLimit = '{{ instagram.limit }}';
+
+$(function(){
+	var userFeed = new Instafeed({
+		accessToken: accessToken,
+		template: `
+			{% if recursos.instagram.limit < 6 %}
+				<div class="item col-md-2 itens-{{ recursos.instagram.limit }} m-0 p-0">
+					{% verbatim %}
+					<a href="{{link}}" rel="noreferrer" target="_blank" id="{{id}}"><img src="{{image}}" class="img-cover" alt="Instagram"/></a>
+					{% endverbatim %}s
+				</div>
+			{% else %}
+				<div class="col-md-2 col-sm-4 col-6 m-0 p-0">
+					<div class="block" style="height:200px;">
+						{% verbatim %}
+						<a href="{{link}}" rel="noreferrer" target="_blank" id="{{id}}"><img src="{{image}}" class="img-cover" alt="Instagram"/></a>
+						{% endverbatim %}
+					</div>
+				</div>
+			{% endif %}
+		`,
+		limit: parseInt(instaLimit),
+		error: function(e){
+			$('#wid_instagram').remove();
+		}
+	});
+	userFeed.run();
+});
+</script>
+{% endif %}

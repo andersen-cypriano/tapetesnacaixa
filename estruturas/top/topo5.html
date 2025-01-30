@@ -1,0 +1,199 @@
+{% set paginasTopo = store.getDynamicPages() %}
+{% set televendas = store.getTextTop() %}
+{% set categorias = store.categories() %}
+{% set categorias_menu = store.categoriesMenu() %}
+{% set ofertasPeriodicas = store.periodicOffers() %}
+
+<header class="block">
+	{% if ofertasPeriodicas[0].id %}
+		<component data-modulo="ofertasperiodicas" loading="false" data-paddingtop="true" data-hidescroll="true"></component>
+	{% endif %}
+	<div id="linha-topo" class="block">
+		<div class="central">
+			<div class="pull-left">
+				<div class="links-line">
+					<a href="./">Home</a>
+					<a href="sobre/">Sobre nós</a>
+					{% for page in paginasTopo %}
+					{{ page|raw }}
+					{% endfor %}
+					<a href="fale-conosco/">Fale conosco</a>
+				</div>
+			</div>
+			<div class="pull-right">
+				{% if televendas %}
+				<div class="links-line">
+					<a href="fale-conosco/">{{ televendas }}</a>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="central">
+		<div class="mobile-inc"></div>
+		<div class="row mb-0 px-3">
+			<div class="col-12 px-0 d-flex align-items-center justify-content-between">
+				<span class="openmenu">
+					<i class="fa fa-bars"></i>
+					<span class="t">MENU</span>
+				</span>
+				
+				<h1><a href="./" id="btLogo" style="background-image:url('{{ store.getLogo() }}');" aria-label="{{ seo.title }}">{{ seo.title }}</a></h1>
+				
+				<div class="links">
+					<nav>
+						<ul>
+							{% if categorias|length > 3 and global.show_menu_todaloja %}
+							<li>
+								<a href="./" onClick="return false;">
+									{% if store.showMenuIcons() == '2' %}
+									<i class="fa fa-th"></i>
+									{% endif %}
+									<strong>Toda a loja</strong>
+									<span class="fa fa-angle-down"></span>
+								</a>
+								
+								{% if categorias|length > 1 %}
+								<div class="drop">
+									<div class="central">
+										<div class="grid">
+											{% for categoria in categorias %}
+											<ul class="list">
+												<li class="t"><a href="{{ categoria.url }}" target="{{ categoria.target }}" {{ categoria.cor != '' ? ' style=color:' ~ categoria.cor : '' }}>{{ categoria.nome }}</a></li>
+												{% for level2 in categoria.subs %}
+												<li><a href="{{ level2.url }}" target="{{ level2.target }}"><i class="fa fa-caret-right muted"></i> {{ level2.nome }}</a></li>
+												{% for level3 in level2.subs %}
+												<li class="indent"><a href="{{ level3.url }}" target="{{ level3.target }}">- {{ level3.nome }}</a></li>
+												{% endfor %}
+												{% endfor %}
+											</ul>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+								{% endif %}
+							</li>
+							{% endif %}
+							
+							{% for cat in categorias_menu|slice(0,12) %}
+							<li>
+								<a href="{{ cat.url }}" target="{{ cat.target }}">
+									{{ cat.icone_categoria|raw }}
+									<span{{ cat.cor != '' ? ' style=color:' ~ cat.cor : '' }}>{{ cat.nome }}</span>
+									{% if cat.subs|length >= 1 %}
+									<span class="fa fa-angle-down"></span>
+									{% endif %}
+								</a>
+								{% if cat.subs|length >= 1 %}
+								<div class="drop{{ cat.banner != '' ? ' subs' : '' }}">
+									<div class="central">
+										<div class="grid">
+											{% for level2 in cat.subs %}
+											<ul class="list">
+												<li class="t">
+													<a href="{{ level2.url }}" target="{{ level2.target }}">
+														{{ level2.icone_categoria|raw }}
+														{{ level2.nome }}
+													</a>
+												</li>
+												{% for level3 in level2.subs %}
+												<li><a href="{{ level3.url }}" target="{{ level3.target }}"><i class="fa fa-caret-right muted"></i> {{ level3.nome }}</a></li>
+												{% endfor %}
+											</ul>
+											{% endfor %}
+										</div>
+										{% if cat.banner != '' %}
+										<div class="bnr">
+											{{ cat.banner|raw }}
+										</div>
+										{% endif %}
+									</div>
+								</div>
+								{% endif %}
+							</li>
+							{% endfor %}
+						</ul>
+					</nav>
+				</div>
+				
+				<div class="pull-right">
+					<div class="search">
+						<form action="busca/" method="get">
+							<input type="text" class="form-control" name="q" aria-label="Buscar" data-url="produtos_autocomplete.php" placeholder="Buscar">
+							<button type="submit" aria-label="Pesquisar"><i class="fa fa-search"></i></button>
+						</form>
+						<span class="cover"></span>
+						<span class="rm">&times;</span>
+						<span class="cover-all"></span>
+					</div>
+					
+					{% if not global.var_mostruario %}
+                        <div class="dropdown">
+                            <p><i class="fa fa-user-o"></i> Meus pedidos</p>
+                            <div class="list load-action-login"></div>
+                        </div>
+                        <div class="shopcart{{ global.var_carrinho_suspenso ? ' suspended' : '' }}">
+                            <a href="carrinho/" class="cart">
+                                <i class="ri-shopping-basket-line"></i>
+                                <span class="sup">0</span>
+                            </a>
+                        </div>
+					{% elseif global.var_mostruario and not global.var_bloquear_cadastros %}
+                        <div class="dropdown">
+                            <p><i class="fa fa-user-o"></i> Central de informações</p>
+                            <div class="list load-mostruario-login"></div>
+                        </div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+{% if global.var_carrinho_suspenso %}
+<div class="suspended-cart">
+	<div class="cover"></div>
+	<div class="content"></div>
+</div>
+{% endif %}
+
+<script defer>
+	$(function(){
+		$(window).scroll(function(){
+			let scr = $(this).scrollTop();
+			let w = $(this).width();
+			if(scr >= 30 && w > 800)
+				!$('header').hasClass('scroll') ? $('header').addClass('scroll') : '';
+			else
+				$('header').hasClass('scroll') ? $('header').removeClass('scroll') : '';
+		});
+		
+		{% if is_mobile %}
+		$('.mobile-inc').load('inc.php?meio=menu_mobile');
+		{% endif %}
+        
+        $.post('action.php', {funcao:'userdata'}, function(d){
+            let html = '';
+            {% if not var_mostruario %}
+                if(d.logged !== '1'){
+                    {% if global.var_login_suspenso %}
+						let modal_login_title = '{{ global.textos_painel.modal_login_titulo ?: "Entrar" }}';
+                        html = '<a href="#" class="mymodal" data-include="inc.php?meio=modulos/login/inc_login" data-title="'+modal_login_title+'" data-width="420">Entrar</a>';
+                    {% else %}
+                        html = '<a href="login/">Entrar</a>';
+                    {% endif %}
+                }else{
+                    html = '<a href="central/pedidos/">Central de pedidos</a><a href="central/dados/">Meus dados</a><a href="#" class="b-desconectar text-error">Desconectar</a>';
+                }
+                $('.load-action-login').html(html);
+            {% elseif var_mostruario and not var_bloquear_cadastros %}
+                if(d.logged !== '1'){
+                    html = '<a href="login/">Entrar</a><a href="#" class="mymodal" data-include="inc.php?meio=inc_cadastro" data-width="500" title="Efetuar cadastro">Cadastrar</a>';
+                }else{
+                    html = '<a href="central/dados/">Meus dados</a><a href="#" class="b-desconectar text-error">Desconectar</a>';
+                }
+                $('.load-mostruario-login').html(html);
+            {% endif %}
+        }, 'json');
+	});
+</script>

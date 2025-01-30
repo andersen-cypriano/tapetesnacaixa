@@ -1,0 +1,112 @@
+{% set slogan = store.getSlogan() %}
+{% set categorias = store.categories() %}
+{% set vitrines = store.showcaseActiveIds() %}
+{% set videoHome = html.getHomeVideo() %}
+
+<section id="page_home" class="block">
+	{{ include('widgets/home-slides.html') }}
+	
+	{% if slogan %}
+	<!-- SLOGAN -->
+	<div id="slogan" class="mb-4">
+		<div class="central">
+			<p>{{ slogan }}</p>
+		</div>
+	</div>
+	{% endif %}
+	
+	{% if geral.hasPerformaAI %}
+	<performa></performa>
+	{% endif %}
+	
+	{{ include('widgets/alertas-destaque.html') }}
+	
+	{% if videoHome.posicionamento == 'top' %}
+		{{ include('widget-video-home.html') }}
+	{% endif %}
+	
+	{{ include('widgets/banners-25.html') }}
+	{{ include('widgets/banners-21.html') }}
+	
+	<section class="block">    
+		<div class="central">
+			{% if global.produtos_kits_posicao == '1' %}
+				<component data-modulo="kits" loading="false" data-shimmer="4"></component>
+			{% endif %}
+			
+			<div class="row mx-0">
+				<div class="col-md-3 d-none d-md-inline">
+					<div id="lmenu">
+						<nav>
+							<ul>
+							{% for categoria in categorias %}
+								<li class="t">
+									<a href="{{ categoria.url }}/">{{ categoria.nome }}</a>
+									{% if categoria.subs|length >= 1 %}
+										<ul class="list">
+											{% for level2 in categoria.subs|slice(0,6) %}
+												<li><a href="{{ level2.url }}/"><i class="fa fa-caret-right"></i> {{ level2.nome }}</a></li>
+												{% for level3 in level2.subs %}
+													<li class="indent"><a href="{{ level3.url }}/">{{ level3.nome }}</a></li>
+												{% endfor %}
+											{% endfor %}
+											{% if categoria.subs|length > 6 %}
+												<li><a href="{{ categoria.url }}/"><i class="fa fa-plus"></i> Ver tudo em {{ categoria.nome }}</a></li>
+											{% endif %}
+										</ul>
+									{% endif %}
+								</li>
+							{% endfor %}
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div id="lcont" class="block mb-4 sticky-top">
+						{% if vitrines|length >= 1 %}
+							{% for vitrine in vitrines %}
+								<component data-modulo="vitrine" data-id="{{ vitrine.id }}" data-columnclass="col-md-4 col-sm-6" data-column="3"  loading="false" data-shimmer="4"></component>
+							{% endfor %}
+							{% else %}
+								<component data-modulo="lancamentos" data-columnclass="col-md-4 col-sm-6" data-column="3"  loading="false" data-shimmer="4"></component>
+							{% if geral.hasSmartHint %}
+								<div id="smarthint-position-1"></div>
+								<div id="smarthint-position-2"></div>
+								<div id="smarthint-position-3"></div>
+								<div id="smarthint-position-4"></div>
+								<div id="smarthint-position-5"></div>
+							{% endif %}
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			
+			{% if global.produtos_kits_posicao == '2' %}
+				<component data-modulo="kits" loading="false" data-shimmer="4"></component>
+			{% endif %}
+		</div>
+		
+		{% if videoHome.posicionamento == 'bottom' %}
+			{{ include('widget-video-home.html') }}
+		{% endif %}
+		
+		{{ include('widgets/avaliacoes.html') }}
+		{{ include('widgets/marcas.html') }}
+		{{ include('widgets/widget-instagram.html') }}
+		{{ include('widgets/widget-blog-posts.html') }}
+	</section>
+	
+	{{ include('widgets/banners-23.html') }}
+	
+	{% if geral.hasSmartHint %}
+	<script>
+	$(function(){
+		SmartHint.Call('setPage',{type:'home', data: {} });
+	});
+	</script>
+	{% endif %}
+	
+	{% if geral.hasPerformaAI %}
+	<performa></performa>
+	{% endif %}
+</section>

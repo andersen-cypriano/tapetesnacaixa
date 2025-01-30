@@ -1,0 +1,28 @@
+{% set box = html.productBox(produto) %}
+
+<div class="item" data-id="{{ produto.id }}" data-sku="{{ produto.url_sku }}">
+	<a href="{{ box.url_relative }}">
+		{{ box.fotos }}
+	</a>
+	{{ box.selos }}
+	{{ box.titulo }}
+	{{ box.codigo }}
+	{{ box.avaliacoes }}
+	{{ box.valor }}
+	{{ box.parcelamento }}
+	{{ box.countdown }}
+	{{ box.valor_atacado }}
+	{{ box.frete_gratis }}
+	{{ box.html_cores }}
+	{{ box.html_variacoes }}
+	{{ box.html_atributos }}
+	{{ box.categorias }}
+	{{ box.desconto }}
+	
+	{% if box.has_botoes %}
+		<div class="botoes">
+			{{ box.botao_olhar }}
+			{{ box.botao_comprar }}
+		</div>
+	{% endif %}
+</div>
