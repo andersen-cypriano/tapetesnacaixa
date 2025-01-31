@@ -1,3 +1,4 @@
+{% set usuario = store.userStore() %}
 {% set categorias = store.categories() %}
 {% set categorias_menu = store.categoriesMenu() %}
 
@@ -17,6 +18,27 @@
 			</div>
 			{% if show_menu != false or page != 'principal.php' %}
 			<div class="links">
+				<div class="topo-links d-block d-sm-none">
+					<div class="close">
+						<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icons8-close.svg" alt="">
+					</div>
+					{% if not usuario.logged %}
+							<div class="topo-not-logged">
+								<div>
+									<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-user-full.svg" alt="">
+									<h1>Olá visitante.</h1>
+								</div>
+								<a href="login/">Entrar /Cadastrar</a>
+							</div>
+							{% else %}
+							<div class="topo-logged">
+								<h1>Bem-vindo(a), {{usuario.logged.nome}}</h1>
+								<a href="central/pedidos/">Central de pedidos</a>
+								<a href="central/dados/">Meus dados</a>
+								<a href="#" id="b-desconectar" class="text-danger">Desconectar</a>
+							</div>
+					{% endif %}
+				</div>
 				<nav>
 					<ul>
 						{% if categorias|length > 3 and global.show_menu_todaloja %}
