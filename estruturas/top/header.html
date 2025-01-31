@@ -16,7 +16,68 @@
 					<img src="{{ store.getLogo() }}" alt="">
 				</a>
 			</div>
-			{% if show_menu != false or page != 'principal.php' %}
+			<ul class="menu-institucional">
+				<li>
+					<a href="/">Inicio</a>
+				</li>
+				<li>
+					<a href="/quem-somos">Quem Somos</a>
+				</li>
+				<li>
+					<a href="/fale-conosco">Fale Conosco</a>
+				</li>
+			</ul>
+	
+			<div class="pull-right">
+				<div class="search">
+					<div class="d-none d-md-block">
+						<form action="busca/" method="get">
+							<input type="text" class="form-control" name="q" data-url="produtos_autocomplete.php" placeholder="Buscar"
+								aria-label="Pesquisar">
+							<button type="submit" aria-label="Filtrar">
+								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-search.svg" alt="">
+							</button>
+						</form>
+						<span class="cover"></span>
+						<span class="rm">&times;</span>
+						<span class="cover-all"></span>
+					</div>
+					<div class="d-block d-md-none">
+						<a href="./" class="bt-mobile mymodal" data-include="inc.php?meio=modal_search" data-title="Pesquisar"><img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-search.svg" alt=""></a>
+					</div>
+				</div>
+				<div class="content-user">
+					{% if not global.var_mostruario %}
+						<div class="dropdown">
+							<a href="/central/favoritos">
+								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-favorite.svg" alt="">
+							</a>
+							<!-- <div class="list load-action-login"></div>; -->
+						</div>
+						<div class="dropdown">
+							<a href="/central">
+								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-user.svg" alt="">
+							</a>
+							<!-- <div class="list load-action-login"></div>; -->
+						</div>
+						<div class="shopcart{{ global.var_carrinho_suspenso ? ' suspended' : '' }}">
+							<a href="carrinho/" class="cart">
+								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-cart.svg" alt="">
+								<span class="sup">0</span>
+							</a>
+						</div>
+						{% elseif global.var_mostruario and not global.var_bloquear_cadastros %}
+						<div class="dropdown">
+							<a href="/central">
+								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-user.svg" alt="">
+							</a>
+							<!-- <div class="list load-mostruario-login"></div> -->
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% if show_menu != false or page != 'principal.php' %}
 			<div class="links">
 				<div class="topo-links d-block d-sm-none">
 					<div class="close">
@@ -155,56 +216,6 @@
 				</nav>
 			</div>
 			{% endif %}
-	
-			<div class="pull-right">
-				<div class="search">
-					<div class="d-none d-md-block">
-						<form action="busca/" method="get">
-							<input type="text" class="form-control" name="q" data-url="produtos_autocomplete.php" placeholder="Buscar"
-								aria-label="Pesquisar">
-							<button type="submit" aria-label="Filtrar">
-								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-search.svg" alt="">
-							</button>
-						</form>
-						<span class="cover"></span>
-						<span class="rm">&times;</span>
-						<span class="cover-all"></span>
-					</div>
-					<div class="d-block d-md-none">
-						<a href="./" class="bt-mobile mymodal" data-include="inc.php?meio=modal_search" data-title="Pesquisar"><img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-search.svg" alt=""></a>
-					</div>
-				</div>
-				<div class="content-user">
-					{% if not global.var_mostruario %}
-						<div class="dropdown">
-							<a href="/central/favoritos">
-								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-favorite.svg" alt="">
-							</a>
-							<!-- <div class="list load-action-login"></div>; -->
-						</div>
-						<div class="dropdown">
-							<a href="/central">
-								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-user.svg" alt="">
-							</a>
-							<!-- <div class="list load-action-login"></div>; -->
-						</div>
-						<div class="shopcart{{ global.var_carrinho_suspenso ? ' suspended' : '' }}">
-							<a href="carrinho/" class="cart">
-								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-cart.svg" alt="">
-								<span class="sup">0</span>
-							</a>
-						</div>
-						{% elseif global.var_mostruario and not global.var_bloquear_cadastros %}
-						<div class="dropdown">
-							<a href="/central">
-								<img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-user.svg" alt="">
-							</a>
-							<!-- <div class="list load-mostruario-login"></div> -->
-						</div>
-					{% endif %}
-				</div>
-			</div>
-		</div>
 	</div>
 </header>
 
