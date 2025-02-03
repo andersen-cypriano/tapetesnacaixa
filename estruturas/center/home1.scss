@@ -72,9 +72,13 @@
 }
 
 #alerts {
-  padding-top: 25rem;
-  background: var(--mt_amarelo);
-  margin-top: -23rem;
+  padding: 25rem 0 10rem 0;
+    background: var(--mt_amarelo) url(https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/bg_alerts.png) center center;
+    margin-top: -23rem;
+    background-position-y: bottom;
+		border-radius: 0 0 50px 0;
+		overflow: hidden;
+		margin-bottom: 5rem;
 	> .central {
 		display: flex;
 		flex-wrap: wrap;
@@ -330,6 +334,25 @@
   }
 }
 
+// MT STYLE
+.vitrine {
+	.titulo {
+		font-size: 2.4rem;
+		font-weight: 900;
+		display: flex;
+		justify-content: center;
+		&:before {
+			content: '/';
+		}
+		&:after {
+			display: none;
+		}
+	}
+	.subtitulo {
+		display: none;
+	}
+}
+
 @media screen and (max-width: 1200px) {
 }
 
@@ -337,6 +360,34 @@
 }
 
 @media screen and (max-width: 768px) {
+	#slider {
+		margin: 2rem auto 0 auto!important;
+		border-radius: 4rem;
+
+	}
+	#alerts {
+		margin-top: -12rem;
+		padding: 15rem 0 10rem 0;
+		> .central {
+			flex-direction: column;
+			width: 95%;
+			margin: 0 auto;
+			p {
+				width: 100% !important;
+    		margin: 0 auto;
+				gap: 1rem;
+				i {
+					width: 7rem;
+					height: 7rem;
+					min-width: 7rem;
+				}
+				span {
+					font-size:1.8rem;
+					text-wrap: wrap;
+				}
+			}
+		}
+	}
 }
 
 @media screen and (max-width: 576px) {
