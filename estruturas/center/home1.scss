@@ -363,7 +363,23 @@
 	#slider {
 		margin: 2rem auto 0 auto!important;
 		border-radius: 4rem;
-
+		.owl-nav {
+			display: block!important;
+			visibility: visible;
+			opacity: 1;
+			> div {
+				background: transparent;
+				i {
+					color: var(--mt_amarelo);
+					font-size: 3rem;
+				}
+			}
+		}
+		.owl-dots {
+			display: block!important;
+			visibility: visible;
+			opacity: 1;
+		}
 	}
 	#alerts {
 		margin-top: -12rem;
