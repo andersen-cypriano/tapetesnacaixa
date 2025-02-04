@@ -52,7 +52,16 @@
 			</section>
 			{% endif %}
 
-			<div class="d-flex d-md-none mobile-filtro">
+			
+
+			{% if geral.hasPerformaAI %}
+			<performa></performa>
+			{% endif %}
+
+			<h2 class="titulo my-0 mb-3">{{ dados.page.title|upper }}</h2>
+			<p class="text-muted mb-3 d-block d-md-none"><span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span></p>
+
+			<div class="d-flex mobile-filtro">
 				<div class="item">
 					<a href="" class="action filtrar-por"><i class="fa fa-filter fa-fw"></i> Filtrar</a>
 				</div>
@@ -66,7 +75,7 @@
 				</div>
 			</div>
 
-			<div class="mobile-filtro-suspended d-block d-md-none">
+			<div class="mobile-filtro-suspended d-block">
 				<div class="cover-filtro"></div>
 				<div class="drop-filtro">
 					<div class="drop-header">
@@ -177,13 +186,6 @@
 				</div>
 			</div>
 
-			{% if geral.hasPerformaAI %}
-			<performa></performa>
-			{% endif %}
-
-			<h2 class="titulo my-0 mb-3">{{ dados.page.title|upper }}</h2>
-			<p class="text-muted mb-3 d-block d-md-none"><span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span></p>
-
 			{% if dados.kits|length > 0 %}
 			<div class="block prod-kits">
 				<div class="row justify-content-center">
@@ -223,10 +225,7 @@
 
 			<div class="row d-none d-md-flex">
 				<div class="col-md-6">
-					<!-- <span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span> -->
-					 <div class="btn-filtro">
-						<span>Filtros</span>
-					 </div>
+					<span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span>
 				</div>
 				<div class="col-md-6 text-md-right">
 					<span>Ordenar por</span>
@@ -238,8 +237,8 @@
 				</div>
 			</div>
 
-			{% if dados.page.hasMenuLateral %}
-			<div class="cln p d-none d-md-block content-filtros">
+			<!-- {% if dados.page.hasMenuLateral %}
+			<div class="cln p d-none d-md-block">
 				<div class="block d-block d-md-none text-center filtrar">
 					<h4 class="t"><span class="border border-dark p-2 d-inline-block">FILTRAR <i class="fa fa-caret-down"></i></span></h4>
 				</div>
@@ -347,7 +346,7 @@
 					{% endif %}
 				</div>
 			</div>
-			{% endif %}
+			{% endif %} -->
 
 			<div class="cln s{{ not dados.page.hasMenuLateral ? ' w-100' : ''}}">
 				{% if dados.page.banner %}

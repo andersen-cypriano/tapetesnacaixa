@@ -95,6 +95,7 @@
 
   --mt_amarelo: #ffb000;
   --mt_cinza: #707070;
+  --mt_cinza_claro: #E1E1E1;
 }
 
 *,
@@ -172,6 +173,41 @@ html {
 }
 
 // PAGINA CATEGORIAS
+
+main.categorias {
+  padding: 0!important;
+  width: 100%!important;
+}
 #departamentos {
   padding-top: 10rem;
+  > .cln.s:has(.produtos) {
+    width: 100%!important;
+  }
+  .produtos {
+    > .row {
+      > div {
+        flex: 0 0 25%;
+        max-width: 25%;
+        justify-content: flex-start;
+      }
+    }
+  }
+  .mobile-filtro {
+    justify-content: space-between!important;
+    border: 0;
+    .item {
+      border: 0!important;
+      width: auto;
+      a {
+        background: var(--mt_cinza_claro);
+        font-size: 1.1rem;
+        color: #4D4D4D;
+        border-radius: .7rem;
+        padding: 0 1.5rem !important;
+        i {
+          display: none;
+        }
+      }
+    }
+  }
 }
