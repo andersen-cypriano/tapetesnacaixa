@@ -8,7 +8,7 @@
 				<ol class="breadcrumb" itemprop="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 					<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
 						<a href="{{ base }}/" itemprop="item">
-							<span itemprop="name">Página inicial</span>
+							<span itemprop="name">Home</span>
 						</a>
 						<meta itemprop="position" content="1" />
 					</li>
@@ -223,7 +223,10 @@
 
 			<div class="row d-none d-md-flex">
 				<div class="col-md-6">
-					<span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span>
+					<!-- <span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span> -->
+					 <div class="btn-filtro">
+						<span>Filtros</span>
+					 </div>
 				</div>
 				<div class="col-md-6 text-md-right">
 					<span>Ordenar por</span>
@@ -236,7 +239,7 @@
 			</div>
 
 			{% if dados.page.hasMenuLateral %}
-			<div class="cln p d-none d-md-block">
+			<div class="cln p d-none d-md-block content-filtros">
 				<div class="block d-block d-md-none text-center filtrar">
 					<h4 class="t"><span class="border border-dark p-2 d-inline-block">FILTRAR <i class="fa fa-caret-down"></i></span></h4>
 				</div>

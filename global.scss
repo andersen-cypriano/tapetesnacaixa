@@ -109,3 +109,69 @@
 html {
   font-size: 62.5%; /* Now 10px = 1rem! */
 }
+
+// LISTAGEM DE PRODUTOS
+.produtos {
+  .item {
+    background-color: transparent!important;
+    border: 0!important;
+    .botoes {
+      visibility: visible !important;
+      opacity: 1 !important;
+      width: auto!important;
+      position: absolute;
+      left: auto!important;
+      right: .5em;
+      top: 2rem!important;
+      background-color: transparent;
+      padding: 0;
+      transition: none;
+      z-index: 10;
+      display: flex;
+      gap: 1rem;
+      > a {
+        width: 5.5rem;
+        height: 5.5rem;
+        border-radius: 50%!important;
+        font-size: 0;
+        display: block;
+      }
+      a[class="b_olhar"] {
+        background: #000 url(https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon_eye.svg) center center no-repeat;
+        
+      }
+      a[class="b_acao"] {
+        background: #000 url(https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon_buy.svg) center center no-repeat;
+      }
+    }
+
+    h3.produto {
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-align: left;
+      float: none;
+      clear: both;
+      padding: 0;
+      text-transform: uppercase;
+      height: auto!important;
+      margin-bottom: 0;
+    }
+    .valor {
+      p.info_adicional {
+        display: none;
+      }
+      p[class="valor_final"] {
+        text-align: left;
+        span {
+          font-size: 1.4rem;
+          color: var(--mt_cinza);
+        }
+      }
+    } 
+  }
+}
+
+// PAGINA CATEGORIAS
+#departamentos {
+  padding-top: 10rem;
+}
