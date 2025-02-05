@@ -95,7 +95,7 @@
 
   --mt_amarelo: #ffb000;
   --mt_cinza: #707070;
-  --mt_cinza_claro: #E1E1E1;
+  --mt_cinza_claro: #e1e1e1;
 }
 
 *,
@@ -114,16 +114,16 @@ html {
 // LISTAGEM DE PRODUTOS
 .produtos {
   .item {
-    background-color: transparent!important;
-    border: 0!important;
+    background-color: transparent !important;
+    border: 0 !important;
     .botoes {
       visibility: visible !important;
       opacity: 1 !important;
-      width: auto!important;
+      width: auto !important;
       position: absolute;
-      left: auto!important;
-      right: .5em;
-      top: 2rem!important;
+      left: auto !important;
+      right: 0.5em;
+      top: 2rem !important;
       background-color: transparent;
       padding: 0;
       transition: none;
@@ -133,16 +133,19 @@ html {
       > a {
         width: 5.5rem;
         height: 5.5rem;
-        border-radius: 50%!important;
+        border-radius: 50% !important;
         font-size: 0;
         display: block;
       }
       a[class="b_olhar"] {
-        background: #000 url(https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon_eye.svg) center center no-repeat;
-        
+        background: #000
+          url(https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon_eye.svg)
+          center center no-repeat;
       }
       a[class="b_acao"] {
-        background: #000 url(https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon_buy.svg) center center no-repeat;
+        background: #000
+          url(https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon_buy.svg)
+          center center no-repeat;
       }
     }
 
@@ -154,7 +157,7 @@ html {
       clear: both;
       padding: 0;
       text-transform: uppercase;
-      height: auto!important;
+      height: auto !important;
       margin-bottom: 0;
     }
     .valor {
@@ -168,22 +171,23 @@ html {
           color: var(--mt_cinza);
         }
       }
-    } 
+    }
   }
 }
 
 // PAGINA CATEGORIAS
 
 main.categorias {
-  padding: 0!important;
-  width: 100%!important;
+  padding: 0 !important;
+  width: 100% !important;
 }
 #departamentos {
   padding-top: 10rem;
   > .cln.s:has(.produtos) {
-    width: 100%!important;
+    width: 100% !important;
   }
   .produtos {
+    margin-top: 5rem;
     > .row {
       > div {
         flex: 0 0 25%;
@@ -193,21 +197,95 @@ main.categorias {
     }
   }
   .mobile-filtro {
-    justify-content: space-between!important;
+    position: relative;
+    justify-content: space-between !important;
     border: 0;
+    margin-top: 4rem;
+    top: 0;
     .item {
-      border: 0!important;
+      border: 0 !important;
       width: auto;
-      a {
+      > a {
         background: var(--mt_cinza_claro);
         font-size: 1.1rem;
-        color: #4D4D4D;
-        border-radius: .7rem;
+        color: #4d4d4d !important;
+        border-radius: 0.7rem;
         padding: 0 1.5rem !important;
+        text-transform: uppercase;
         i {
           display: none;
         }
       }
     }
+    .open-filtro-suspenso {
+      display: block!important;
+    }
+    .filtro-suspenso {
+      position: absolute;
+      width: 30rem;
+      top: 3rem;
+      left: 0;
+      display: none;
+      box-shadow: 0px 3px 6px #00000029;
+      border-radius: 15px;
+      background-color: #fff;
+
+      .drop-filtro {
+        padding: 2rem 3rem;
+        .drop-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid var(--mt_cinza);
+          padding-bottom: 1rem;
+          margin-bottom: 2rem;
+          h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+          }
+          span.fechar {
+            font-size: 2.6rem;
+            color: var(--mt_amarelo);
+            cursor: pointer;
+          }
+        }
+        .drop-list {
+          > div {
+            margin-bottom: 2rem;
+          }
+          .listing {
+            .t.block {
+              font-size: 1.4rem;
+              font-weight: 700;
+              margin-bottom: 1.4rem;
+            }
+            a {
+              color: var(--mt_cinza);
+            }
+          }
+          .colors {
+            > div {
+              display: flex;
+              justify-content: flex-start;
+              width: 100%;
+              flex-wrap: wrap;
+              gap: 1rem;
+            }
+          }
+          .vars {
+            > div {
+              display: flex;
+              justify-content: flex-start;
+              width: 100%;
+              flex-wrap: wrap;
+              gap: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  .row:has(.orderby) {
+    display: none !important;
   }
 }

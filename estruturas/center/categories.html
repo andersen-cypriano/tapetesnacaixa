@@ -63,7 +63,7 @@
 
 			<div class="d-flex mobile-filtro">
 				<div class="item">
-					<a href="" class="action filtrar-por"><i class="fa fa-filter fa-fw"></i> Filtrar</a>
+					<a href="#" class="action filtrar-por" onclick="showFiltro()"><i class="fa fa-filter fa-fw"></i> Filtrar</a>
 				</div>
 				<div class="item">
 					<a href="" class="action ordenar-por"><i class="fa fa-sort fa-fw"></i> Ordenar</a>
@@ -73,118 +73,119 @@
 						{% endfor %}
 					</div>
 				</div>
-			</div>
-
-			<div class="mobile-filtro-suspended d-block">
-				<div class="cover-filtro"></div>
-				<div class="drop-filtro">
-					<div class="drop-header">
-						<h3>FILTRAR</h3>
-						<span class="fechar">&times;</span>
-					</div>
-					<div class="drop-list">
-						{% if dados.prices.items|length > 0 or extra.vl1 %}
-						<div class="listing vars">
-							<h3 class="t block">
-								<span class="float-left">POR PREÇO</span>
-								{% if extra.vl1 %}
-								<span class="float-right"><a href="{{ dados.prices.url_all }}" style="font-size: 10px;">Ver todos</a></span>
-								{% endif %}
-							</h3>
-							<div class="b">
-								{% for item in dados.prices.items %}
-								{% set texto_valor = item.de == "0.01" ? ("até R$"~item.ate|valor) : ("de R$"~item.de|valor~" até R$"~item.ate|valor) %}
-								<a href="{{ item.url }}"{{ extra.vl1 == item.de ? ' class="active"' : '' }}>{{ texto_valor }}</a>
-								{% endfor %}
-							</div>
+				<div class="filtro-suspenso">
+					<div class="cover-filtro"></div>
+					<div class="drop-filtro">
+						<div class="drop-header">
+							<h3>FILTRAR</h3>
+							<span class="fechar" onclick="hiddenFiltro()">&times;</span>
 						</div>
-						{% endif %}
-						{% if dados.colors.items|length >= 1 %}
-						<div class="listing colors">
-							<h3 class="t block">
-								<span class="float-left">COR</span>
-								{% if extra.cor %}
-								<span class="float-right"><a href="{{ dados.colors.url_all }}" style="font-size: 10px;">Ver todos </a></span>
-								{% endif %}
-							</h3>
-							<div class="b">
-								{% for cor in dados.colors.items %}
-								<a href="{{ cor.url }}"{{ extra.cor == cor.id ? ' class="active"' : '' }}>{{ cor.nome }}</a>
-								{% endfor %}
+						<div class="drop-list">
+							{% if dados.prices.items|length > 0 or extra.vl1 %}
+							<div class="listing vars">
+								<h3 class="t block">
+									<span class="float-left">POR PREÇO</span>
+									{% if extra.vl1 %}
+									<span class="float-right"><a href="{{ dados.prices.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+									{% endif %}
+								</h3>
+								<div class="b">
+									{% for item in dados.prices.items %}
+									{% set texto_valor = item.de == "0.01" ? ("até R$"~item.ate|valor) : ("de R$"~item.de|valor~" até R$"~item.ate|valor) %}
+									<a href="{{ item.url }}"{{ extra.vl1 == item.de ? ' class="active"' : '' }}>{{ texto_valor }}</a>
+									{% endfor %}
+								</div>
 							</div>
-						</div>
-						{% endif %}
-						{% for variacao in dados.variations %}
-						<div class="listing vars">
-							<h3 class="t block">
-								<span class="float-left">{{ variacao.nome|upper }}</span>
-								{% if extra.var %}
-								<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
-								{% endif %}
-							</h3>
-							<div class="b">
-								{% for item in variacao.items %}
-								<a href="{{ item.url }}"{{ extra.var == item.id ? ' class="active"' : '' }}>{{ item.valor }}</a>
-								{% endfor %}
+							{% endif %}
+							{% if dados.colors.items|length >= 1 %}
+							<div class="listing colors">
+								<h3 class="t block">
+									<span class="float-left">COR</span>
+									{% if extra.cor %}
+									<span class="float-right"><a href="{{ dados.colors.url_all }}" style="font-size: 10px;">Ver todos </a></span>
+									{% endif %}
+								</h3>
+								<div class="b">
+									{% for cor in dados.colors.items %}
+									<a href="{{ cor.url }}"{{ extra.cor == cor.id ? ' class="active"' : '' }}>{{ cor.nome }}</a>
+									{% endfor %}
+								</div>
 							</div>
-						</div>
-						{% endfor %}
-
-						{% for variacao in dados.attributes %}
-						<div class="listing vars">
-							<h3 class="t block">
-								<span class="float-left">{{ variacao.nome|upper }}</span>
-								{% if extra.attr %}
-								<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
-								{% endif %}
-							</h3>
-							<div class="b">
-								{% for item in variacao.items %}
-								<a href="{{ item.url }}"{{ extra.attr == item.id ? ' class="active"' : '' }}>{{ item.nome }}</a>
-								{% endfor %}
+							{% endif %}
+							{% for variacao in dados.variations %}
+							<div class="listing vars">
+								<h3 class="t block">
+									<span class="float-left">{{ variacao.nome|upper }}</span>
+									{% if extra.var %}
+									<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+									{% endif %}
+								</h3>
+								<div class="b">
+									{% for item in variacao.items %}
+									<a href="{{ item.url }}"{{ extra.var == item.id ? ' class="active"' : '' }}>{{ item.valor }}</a>
+									{% endfor %}
+								</div>
 							</div>
-						</div>
-						{% endfor %}
-
-						{% if dados.brands.items|length >= 1 %}
-						<div class="listing vars">
-							<h3 class="t block">
-								<span class="float-left">MARCA</span>
-								{% if extra.b %}
-								<span class="float-right"><a href="{{ dados.brands.url_all }}" style="font-size: 10px;">Ver todos</a></span>
-								{% endif %}
-							</h3>
-							<div class="b">
-								{% for item in dados.brands.items %}
-								<a href="{{ item.url }}"{{ extra.b == item.id ? ' class="active"' : '' }}>{{ item.marca }}</a>
-								{% endfor %}
+							{% endfor %}
+	
+							{% for variacao in dados.attributes %}
+							<div class="listing vars">
+								<h3 class="t block">
+									<span class="float-left">{{ variacao.nome|upper }}</span>
+									{% if extra.attr %}
+									<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+									{% endif %}
+								</h3>
+								<div class="b">
+									{% for item in variacao.items %}
+									<a href="{{ item.url }}"{{ extra.attr == item.id ? ' class="active"' : '' }}>{{ item.nome }}</a>
+									{% endfor %}
+								</div>
 							</div>
-						</div>
-						{% endif %}
-
-						{% if dados.categories_l2|length >= 1 %}
-						<div class="listing">
-							<h3 class="t"><span class="c">{{ dados.page.cl1.nome|upper }}</span></h3>
-							<div class="b">
-								{% for categoria in dados.categories_l2 %}
-								<a href="{{ categoria.url }}"{{ extra.clevel2 and extra.clevel2 in categoria.url  ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
-								{% endfor %}
+							{% endfor %}
+	
+							{% if dados.brands.items|length >= 1 %}
+							<div class="listing vars">
+								<h3 class="t block">
+									<span class="float-left">MARCA</span>
+									{% if extra.b %}
+									<span class="float-right"><a href="{{ dados.brands.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+									{% endif %}
+								</h3>
+								<div class="b">
+									{% for item in dados.brands.items %}
+									<a href="{{ item.url }}"{{ extra.b == item.id ? ' class="active"' : '' }}>{{ item.marca }}</a>
+									{% endfor %}
+								</div>
 							</div>
-						</div>
-						{% endif %}
-						{% if dados.categories_l3|length >= 1 %}
-						<div class="listing">
-							<h3 class="t"><span class="c">{{ dados.page.cl2.nome|upper }}</span></h3>
-							<div class="b">
-								{% for categoria in dados.categories_l3 %}
-								<a href="{{ categoria.url }}"{{ extra.clevel3 and extra.clevel3 in categoria.url ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
-								{% endfor %}
+							{% endif %}
+	
+							{% if dados.categories_l2|length >= 1 %}
+							<div class="listing">
+								<h3 class="t"><span class="c">{{ dados.page.cl1.nome|upper }}</span></h3>
+								<div class="b">
+									{% for categoria in dados.categories_l2 %}
+									<a href="{{ categoria.url }}"{{ extra.clevel2 and extra.clevel2 in categoria.url  ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
+									{% endfor %}
+								</div>
 							</div>
+							{% endif %}
+							{% if dados.categories_l3|length >= 1 %}
+							<div class="listing">
+								<h3 class="t"><span class="c">{{ dados.page.cl2.nome|upper }}</span></h3>
+								<div class="b">
+									{% for categoria in dados.categories_l3 %}
+									<a href="{{ categoria.url }}"{{ extra.clevel3 and extra.clevel3 in categoria.url ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
+									{% endfor %}
+								</div>
+							</div>
+							{% endif %}
 						</div>
-						{% endif %}
 					</div>
 				</div>
 			</div>
+
+			
 
 			{% if dados.kits|length > 0 %}
 			<div class="block prod-kits">

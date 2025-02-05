@@ -25,9 +25,16 @@ const useMenuMobile = {
   }
 }
 
+function showFiltro() {
+  document.querySelector('.filtro-suspenso').classList.toggle('open-filtro-suspenso');
+}
+function hiddenFiltro() {
+  document.querySelector('.filtro-suspenso').classList.remove('open-filtro-suspenso');
+}
+
 
 window.addEventListener('load', ()=>{
   onMobile ? useMenuMobile.init() : null;
 })
 
-console.log('dev 2.0');
+console.log('dev 4.0');
