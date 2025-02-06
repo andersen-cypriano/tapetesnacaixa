@@ -23,7 +23,7 @@
 		{{ include('widgets/widget-video-home.html') }}
 	{% endif %}
 	
-	{{ include('widgets/banners-25.html') }}
+
 	{{ include('widgets/banners-21.html') }}
 	
 	<section class="block">    
@@ -56,6 +56,9 @@
 			{% if global.produtos_kits_posicao == '2' %}
 				<component data-modulo="kits" loading="false" data-shimmer="4"></component>
 			{% endif %}
+		</div>
+		<div class="banner-video-01">
+			{{ include('widgets/banners-25.html') }}
 		</div>
 		
 		{% if videoHome.posicionamento == 'bottom' %}

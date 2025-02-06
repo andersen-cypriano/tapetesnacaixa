@@ -1,15 +1,9 @@
 {% set bannerMainMedium = store.publicityBanner({tipo:'25', limit:'2'}) %}
 
 {% if bannerMainMedium|length > 0 %}
-<section class="banner-main-medium block mb-4 px-3 px-md-0">
-    <div class="central">
-        <div class="row justify-content-center">
-            {% for banner in bannerMainMedium %}
-            <div class="col text-center">
-                {{ banner.raw|raw }}
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+<div class="content">
+    {% for banner in bannerMainMedium %}
+        {{ banner.raw|raw }}
+    {% endfor %}
+</div>
 {% endif %}
