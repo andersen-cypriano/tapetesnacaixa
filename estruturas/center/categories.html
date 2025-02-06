@@ -36,15 +36,17 @@
 					{% endif %}
 				</ol>
 			</nav>
-			
+
 			{% if filiais|length >= 1 %}
 			<section id="filiais" class="block">
 				<h2 class="titulo mb-3">FORNECEDORES</h2>
 				<div class="block">
-					<div class="itens owl-auto owl-carousel owl-theme" data-items="4" data-responsive800="2" data-loop="false" data-margin="10">
+					<div class="itens owl-auto owl-carousel owl-theme" data-items="4" data-responsive800="2" data-loop="false"
+						data-margin="10">
 						{% for item in filiais %}
 						<div class="item">
-							<a href="{{ item.url_interna_matriz }}"><img src="{{ item.logo }}" alt="{{ item.nome }}" class="img-fluid" /></a>
+							<a href="{{ item.url_interna_matriz }}"><img src="{{ item.logo }}" alt="{{ item.nome }}"
+									class="img-fluid" /></a>
 						</div>
 						{% endfor %}
 					</div>
@@ -52,14 +54,16 @@
 			</section>
 			{% endif %}
 
-			
+
 
 			{% if geral.hasPerformaAI %}
 			<performa></performa>
 			{% endif %}
 
 			<h2 class="titulo my-0 mb-3">{{ dados.page.title|upper }}</h2>
-			<p class="text-muted mb-3 d-block d-md-none"><span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span></p>
+			<p class="text-muted mb-3 d-block d-md-none">
+				<span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span>
+			</p>
 
 			<div class="d-flex mobile-filtro">
 				<div class="item">
@@ -86,13 +90,14 @@
 								<h3 class="t block">
 									<span class="float-left">POR PREÇO</span>
 									{% if extra.vl1 %}
-									<span class="float-right"><a href="{{ dados.prices.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+									<span class="float-right"><a href="{{ dados.prices.url_all }}" style="font-size: 10px;">Ver
+											todos</a></span>
 									{% endif %}
 								</h3>
 								<div class="b">
 									{% for item in dados.prices.items %}
 									{% set texto_valor = item.de == "0.01" ? ("até R$"~item.ate|valor) : ("de R$"~item.de|valor~" até R$"~item.ate|valor) %}
-									<a href="{{ item.url }}"{{ extra.vl1 == item.de ? ' class="active"' : '' }}>{{ texto_valor }}</a>
+									<a href="{{ item.url }}" {{ extra.vl1 == item.de ? ' class="active"' : '' }}>{{ texto_valor }}</a>
 									{% endfor %}
 								</div>
 							</div>
@@ -102,12 +107,13 @@
 								<h3 class="t block">
 									<span class="float-left">COR</span>
 									{% if extra.cor %}
-									<span class="float-right"><a href="{{ dados.colors.url_all }}" style="font-size: 10px;">Ver todos </a></span>
+									<span class="float-right"><a href="{{ dados.colors.url_all }}" style="font-size: 10px;">Ver todos
+										</a></span>
 									{% endif %}
 								</h3>
 								<div class="b">
 									{% for cor in dados.colors.items %}
-									<a href="{{ cor.url }}"{{ extra.cor == cor.id ? ' class="active"' : '' }}>{{ cor.nome }}</a>
+									<a href="{{ cor.url }}" {{ extra.cor == cor.id ? ' class="active"' : '' }}>{{ cor.nome }}</a>
 									{% endfor %}
 								</div>
 							</div>
@@ -117,55 +123,60 @@
 								<h3 class="t block">
 									<span class="float-left">{{ variacao.nome|upper }}</span>
 									{% if extra.var %}
-									<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+									<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver
+											todos</a></span>
 									{% endif %}
 								</h3>
 								<div class="b">
 									{% for item in variacao.items %}
-									<a href="{{ item.url }}"{{ extra.var == item.id ? ' class="active"' : '' }}>{{ item.valor }}</a>
+									<a href="{{ item.url }}" {{ extra.var == item.id ? ' class="active"' : '' }}>{{ item.valor }}</a>
 									{% endfor %}
 								</div>
 							</div>
 							{% endfor %}
-	
+
 							{% for variacao in dados.attributes %}
 							<div class="listing vars">
 								<h3 class="t block">
 									<span class="float-left">{{ variacao.nome|upper }}</span>
 									{% if extra.attr %}
-									<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+									<span class="float-right"><a href="{{ variacao.url_all }}" style="font-size: 10px;">Ver
+											todos</a></span>
 									{% endif %}
 								</h3>
 								<div class="b">
 									{% for item in variacao.items %}
-									<a href="{{ item.url }}"{{ extra.attr == item.id ? ' class="active"' : '' }}>{{ item.nome }}</a>
+									<a href="{{ item.url }}" {{ extra.attr == item.id ? ' class="active"' : '' }}>{{ item.nome }}</a>
 									{% endfor %}
 								</div>
 							</div>
 							{% endfor %}
-	
+
 							{% if dados.brands.items|length >= 1 %}
 							<div class="listing vars">
 								<h3 class="t block">
 									<span class="float-left">MARCA</span>
 									{% if extra.b %}
-									<span class="float-right"><a href="{{ dados.brands.url_all }}" style="font-size: 10px;">Ver todos</a></span>
+									<span class="float-right"><a href="{{ dados.brands.url_all }}" style="font-size: 10px;">Ver
+											todos</a></span>
 									{% endif %}
 								</h3>
 								<div class="b">
 									{% for item in dados.brands.items %}
-									<a href="{{ item.url }}"{{ extra.b == item.id ? ' class="active"' : '' }}>{{ item.marca }}</a>
+									<a href="{{ item.url }}" {{ extra.b == item.id ? ' class="active"' : '' }}>{{ item.marca }}</a>
 									{% endfor %}
 								</div>
 							</div>
 							{% endif %}
-	
+
 							{% if dados.categories_l2|length >= 1 %}
 							<div class="listing">
 								<h3 class="t"><span class="c">{{ dados.page.cl1.nome|upper }}</span></h3>
 								<div class="b">
 									{% for categoria in dados.categories_l2 %}
-									<a href="{{ categoria.url }}"{{ extra.clevel2 and extra.clevel2 in categoria.url  ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
+									<a href="{{ categoria.url }}"
+										{{ extra.clevel2 and extra.clevel2 in categoria.url  ? ' class="active"' : '' }}>{{ categoria.nome }}
+										({{ categoria.total_produtos_ativos }})</a>
 									{% endfor %}
 								</div>
 							</div>
@@ -175,7 +186,9 @@
 								<h3 class="t"><span class="c">{{ dados.page.cl2.nome|upper }}</span></h3>
 								<div class="b">
 									{% for categoria in dados.categories_l3 %}
-									<a href="{{ categoria.url }}"{{ extra.clevel3 and extra.clevel3 in categoria.url ? ' class="active"' : '' }}>{{ categoria.nome }} ({{ categoria.total_produtos_ativos }})</a>
+									<a href="{{ categoria.url }}"
+										{{ extra.clevel3 and extra.clevel3 in categoria.url ? ' class="active"' : '' }}>{{ categoria.nome }}
+										({{ categoria.total_produtos_ativos }})</a>
 									{% endfor %}
 								</div>
 							</div>
@@ -185,7 +198,7 @@
 				</div>
 			</div>
 
-			
+
 
 			{% if dados.kits|length > 0 %}
 			<div class="block prod-kits">
@@ -232,7 +245,8 @@
 					<span>Ordenar por</span>
 					<select class="border border-dark p-1 mx-2 orderby" style="width: 150px; font-size: 12px;">
 						{% for item in dados.filters %}
-						<option value="{{ item.value }}" data-url="{{ item.data_url }}"{{ item.selected ? ' selected' : '' }}>{{ item.name }}</option>
+						<option value="{{ item.value }}" data-url="{{ item.data_url }}" {{ item.selected ? ' selected' : '' }}>
+							{{ item.name }}</option>
 						{% endfor %}
 					</select>
 				</div>
@@ -382,7 +396,8 @@
 				<div class="produtos">
 					<div class="row">
 						{% for produto in dados.products.data %}
-						<div class="{{dados.page.hasMenuLateral ? 'col-md-4' : 'col-md-3' }} {{ dados.page.mobile.coluna_dupla ? 'col-6' : 'col-12' }}">
+						<div
+							class="{{dados.page.hasMenuLateral ? 'col-md-4' : 'col-md-3' }} {{ dados.page.mobile.coluna_dupla ? 'col-6' : 'col-12' }}">
 							{{ include('widgets/box-do-produto.html') }}
 						</div>
 						{% else %}
@@ -399,9 +414,11 @@
 				<div class="row divider mb-4">
 					<div class="col text-center">
 						{{ dados.pagination.page_prev ? ('<a href="' ~ dados.pagination.page_prev ~ '" class="btn btn-sm btn-outline-dark"><i class="fa fa-caret-left fa-fw"></i> Página anterior</a>')|raw : '<span class="btn btn-sm btn-outline-dark disabled"><i class="fa fa-caret-left fa-fw"></i> Página anterior</span>' }}
-						<select class="border border-dark mx-1" onChange="location.href=this.value;" style="height: 31px; display: inline-block; vertical-align: middle; padding: 0 5px; background-color: transparent;">
+						<select class="border border-dark mx-1" onChange="location.href=this.value;"
+							style="height: 31px; display: inline-block; vertical-align: middle; padding: 0 5px; background-color: transparent;">
 							{% for page in dados.pagination.page_all %}
-							<option value="{{ page.url }}"{{ dados.pagination.page_atual == page.page ? ' selected' : '' }}>{{ page.page }}</option>
+							<option value="{{ page.url }}" {{ dados.pagination.page_atual == page.page ? ' selected' : '' }}>
+								{{ page.page }}</option>
 							{% endfor %}
 						</select>
 						{{ dados.pagination.page_next ? ('<a href="' ~ dados.pagination.page_next ~ '" class="btn btn-sm btn-outline-dark"><i class="fa fa-caret-right fa-fw"></i> Próxima página</a>')|raw : '<span class="btn btn-sm btn-outline-dark disabled"><i class="fa fa-caret-right fa-fw"></i> Próxima página</span>' }}
@@ -425,23 +442,45 @@
 		</section>
 
 		<script>
-			$(function(){
+			$(function () {
 				{% if geral.hasSmartHint %}
-				SmartHint.Call('setPage',{type:'category', data: {content: '{{ dados.page.title }}'} });
-				 {% endif %}
+				SmartHint.Call('setPage', {
+					type: 'category',
+					data: {
+						content: '{{ dados.page.title }}'
+					}
+				}); {% endif %}
 
-				 $('.filtrar').click(function(){
-					 $(this).toggleClass('mb-4');
-					 $('.filtros').toggleClass('d-none');
-				 });
+				$('.filtrar').click(function () {
+					$(this).toggleClass('mb-4');
+					$('.filtros').toggleClass('d-none');
+				});
 
-				  $('.orderby').change(function(){
-					  var url = $('option:selected', this).data('url');
-					  location.href = url;
-				  });
-				 });
+				$('.orderby').change(function () {
+					var url = $('option:selected', this).data('url');
+					location.href = url;
+				});
+			});
 		</script>
 
 		{{ dados.page.seo_scripts|raw }}
+		<script>
+			window.addEventListener('load', () => {
+				function setEventButton() {
+					document.querySelectorAll('.btn-cores').forEach(element =>{
+						element.addEventListener('click', (e) => {
+							e.target.previousSibling.classList.toggle('show-colors');
+						})
+					})
+					document.querySelectorAll('.btn-tamanhos').forEach(element =>{
+						element.addEventListener('click', (e) => {
+							e.target.previousSibling.classList.toggle('show-tamanhos');
+						})
+					})
+				}
+				setEventButton();
+			})
+			console.log('teste5');
+		</script>
 	</main>
 </div>

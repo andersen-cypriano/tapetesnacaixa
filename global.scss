@@ -116,6 +116,41 @@ html {
   .item {
     background-color: transparent !important;
     border: 0 !important;
+    .show-colors > span {
+      display: inline-block!important;
+    }
+    .cores span:nth-of-type(n+7) {
+      display: none;
+    }
+    .cores {
+      margin-bottom: 0;
+      span {
+        margin-bottom: .8rem;
+      }
+    }
+    .btn-cores {
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+    }
+
+    .show-tamanhos > span {
+      display: inline-block!important;
+    }
+    .variacoes span:nth-of-type(n+4) {
+      display: none;
+    }
+    .variacoes {
+      margin-bottom: 0;
+      span {
+        margin-bottom: .8rem;
+      }
+    }
+    .btn-tamanhos {
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+    }
+
+
     .botoes {
       visibility: visible !important;
       opacity: 1 !important;

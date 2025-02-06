@@ -33,8 +33,13 @@ function hiddenFiltro() {
 }
 
 
+
+
+
 window.addEventListener('load', ()=>{
   onMobile ? useMenuMobile.init() : null;
+
+
 })
 
 console.log('dev 4.0');
