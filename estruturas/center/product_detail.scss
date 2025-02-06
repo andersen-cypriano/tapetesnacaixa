@@ -227,3 +227,15 @@ section.produtos-relacionados {
     font-size: 3rem;
   }
 }
+
+@media(max-width:768px) {
+  .variacoes {
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      > div {
+        padding: 5px 10px!important;
+      }
+    }
+  }
+}
