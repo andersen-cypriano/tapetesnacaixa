@@ -11,9 +11,9 @@
 {% if page != 'login' and page != 'shop_cart' and not global.var_desabilita_news %}
     <div class="news">
        <div class="central">
-        <h3 class="t">{{ widgetNews.title }}</h3>
+        <h3 class="titulo">{{ widgetNews.title }}</h3>
         <div class="box">
-            <p>{{ widgetNews.subtitle1 }}<br>{{ widgetNews.subtitle2 }}</p>
+            <!-- <p>{{ widgetNews.subtitle1 }}<br>{{ widgetNews.subtitle2 }}</p> -->
             <form id="frmNews" action="news_func.php" method="post" class="post">
                 <input type="email" name="email" class="input-block-level" aria-label="Digite seu e-mail aqui" required placeholder="Digite seu e-mail aqui">
                 <button type="submit">ME INSCREVER</button>
