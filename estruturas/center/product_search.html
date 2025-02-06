@@ -322,4 +322,22 @@
 		});
 	});
 	</script>
+	<script>
+		window.addEventListener('load', () => {
+			function setEventButton() {
+				document.querySelectorAll('.btn-cores').forEach(element =>{
+					element.addEventListener('click', (e) => {
+						e.target.previousSibling.classList.toggle('show-colors');
+					})
+				})
+				document.querySelectorAll('.btn-tamanhos').forEach(element =>{
+					element.addEventListener('click', (e) => {
+						e.target.previousSibling.classList.toggle('show-tamanhos');
+					})
+				})
+			}
+			setEventButton();
+		})
+		console.log('teste5');
+	</script>
 </main>
