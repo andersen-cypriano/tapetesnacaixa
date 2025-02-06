@@ -8,29 +8,83 @@
 {% set selos = store.securitySeal() %}
 {% set widgetNews = store.widgetNews() %}
 
-<footer class="block">
+{% if page != 'login' and page != 'shop_cart' and not global.var_desabilita_news %}
+    <div class="news">
+       <div class="central">
+        <h3 class="t">{{ widgetNews.title }}</h3>
+        <div class="box">
+            <p>{{ widgetNews.subtitle1 }}<br>{{ widgetNews.subtitle2 }}</p>
+            <form id="frmNews" action="news_func.php" method="post" class="post">
+                <input type="email" name="email" class="input-block-level" aria-label="Digite seu e-mail aqui" required placeholder="Digite seu e-mail aqui">
+                <button type="submit">ME INSCREVER</button>
+            </form>
+        </div>
+       </div>
+    </div>
+{% endif %}
+<footer id="rodape">
+    <div class="central">
+        <div class="col-footer item-institucional">
+            <h3 class="titulo">INSTITUCIONAL</h3>
+            <div class="lista">
+                <a href="sobre/">SOBRE NÓS</a>
+                {% for page in paginasInstitucional %}
+                    {{ page|raw }}
+                {% endfor %}
+                <a href="fale-conosco/">FALE CONOSCO</a>
+            </div>
+        </div>
+        <div class="col-footer item-conta">
+            {% if not global.var_bloquear_cadastros %}
+                <h3 class="titulo">MINHA CONTA</h3>
+                <div class="lista">
+                    <a href="central/dados/">MINHA CONTA</a>
+                    {% if not global.var_mostruario %}
+                        <a href="central/pedidos/">MINHAS COMPRAS</a>
+                        <a href="carrinho/">MEU CARRINHO</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-footer item-atendimento">
+            {% if footerText.base != '' %}
+                <h3 class="titulo">ATENDIMENTO</h3>
+                <div class="lista">
+                    {{ footerText.base|raw }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-footer item-social">
+            {% if redesSociais.raw|length >= 1 %}
+                <h3 class="titulo">NOSSAS REDES</h3>
+                <div class="lista">
+				{% for item in redesSociais.raw %}
+					{{ item|raw }}
+				{% endfor %}
+                </div>
+            {% endif %}
+            <div class="content-seguranca">
+                <h3 class="titulo">SEGURANÇA</h3>
+                {% for selo in selos %}
+                    {{ selo|raw }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="content-dev">
+        {{ footerText.rodape|raw }}
+    </div>
+</footer>
+    
+</footer>
+
+<footer class="block d-none">
 	{% if page != 'shop_cart' %}
 	<section id="base" class="block">
         <div class="central">
             <div class="blc">
-			{% if not global.var_bloquear_cadastros %}
-                <h3 class="t">SUA CONTA</h3>
-                <div class="links">
-                    <a href="central/dados/">MINHA CONTAÇÃO</a>
-				{% if not global.var_mostruario %}
-                    <a href="central/pedidos/">MINHAS COMPRAS</a>
-                    <a href="carrinho/">MEU CARRINHO</a>
-                {% endif %}
-                </div>
-            {% endif %}
-                <h3 class="t">INSTITUCIONAL</h3>
-                <div class="links">
-                    <a href="sobre/">SOBRE NÓS</a>
-					{% for page in paginasInstitucional %}
-						{{ page|raw }}
-					{% endfor %}
-                	<a href="fale-conosco/">FALE CONOSCO</a>
-                </div>
+			
+                
             </div>
             <div class="blc">
                 <h3 class="t">PRECISA DE AJUDA?</h3>
@@ -46,22 +100,9 @@
                 {% endif %}
                 </div>
             </div>
-        {% if footerText.base != '' %}
-            <div class="blc">
-                <h3 class="t">ATENDIMENTO</h3>
-                <div class="txt">
-                	{{ footerText.base|raw }}
-                </div>
-            </div>
-        {% endif %}
+        
             <div class="social">
-			{% if redesSociais.raw|length >= 1 %}
-                <div class="links">
-				{% for item in redesSociais.raw %}
-					{{ item|raw }}
-				{% endfor %}
-                </div>
-            {% endif %}
+			
             {% if widgetfb %}
                 <div class="widget">
 					{{ widgetfb.raw|raw }}
@@ -92,30 +133,21 @@
             </div>
         {% endif %}
             <div class="selos">
-                <h3 class="t">SEGURAN?A</h3>
-				{% for selo in selos %}
-					{{ selo|raw }}
-				{% endfor %}
+                
             </div>
-		{% if page != 'login' and page != 'shop_cart' and not global.var_desabilita_news %}
-            <div class="news">
-                <h3 class="t">{{ widgetNews.title }}</h3>
-                <div class="box">
-                    <p>{{ widgetNews.subtitle1 }}<br>{{ widgetNews.subtitle2 }}</p>
-                    <form id="frmNews" action="news_func.php" method="post" class="post">
-                        <input type="email" name="email" class="input-block-level" aria-label="Digite seu e-mail aqui" required placeholder="Digite seu e-mail aqui">
-                        <button type="submit">ME INSCREVER</button>
-                    </form>
-                </div>
-            </div>
-        {% endif %}
+		
         </div>
     </section>
-	{% if footerText.rodape != '' %}
-		<section id="rodape" class="block">
-			<div class="central">
-				{{ footerText.rodape|raw }}
-			</div>
-		</section>
-	{% endif %}
 </footer>
+
+
+<script>
+    window.addEventListener("load", (event) => {
+        const contentLogosDev = document.querySelector('footer.d-none + script + p + div');
+        const contentLogosProd = document.querySelector('footer.d-none + script + div');
+        const contentLegal = document.querySelector('.content-dev');
+
+        contentLogosDev ? contentLegal.prepend(contentLogosDev) : contentLegal.prepend(contentLogosProd);
+});
+
+</script>
