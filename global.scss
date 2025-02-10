@@ -119,7 +119,7 @@ html {
     .show-colors > span {
       display: inline-block!important;
     }
-    .cores span:nth-of-type(n+7) {
+    .cores span:nth-of-type(n+4) {
       display: none;
     }
     .cores {
@@ -150,7 +150,9 @@ html {
       margin-bottom: 1.5rem;
     }
 
-
+    .more {
+      display: none;
+    }
     .botoes {
       visibility: visible !important;
       opacity: 1 !important;
@@ -193,9 +195,11 @@ html {
       padding: 0;
       text-transform: uppercase;
       height: auto !important;
-      margin-bottom: 0;
+      margin-bottom: 2rem;
     }
     .valor {
+      margin-bottom: 0;
+      min-height: auto!important;
       p.info_adicional {
         display: none;
       }
@@ -206,6 +210,10 @@ html {
           color: var(--mt_cinza);
         }
       }
+    }
+    .parcelamento {
+      text-align: left;
+      padding: 0;
     }
   }
 }

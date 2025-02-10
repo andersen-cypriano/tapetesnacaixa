@@ -205,41 +205,51 @@ footer {
     width: 30%;
     float: right;
     margin-left: 5%;
-
-    .box {
-      width: 100%;
-      float: left;
-      padding: 15px;
-      background-color: var(--rodape_newsletter_fundo);
-      color: var(--rodape_newsletter_texto);
-
-      p {
-        margin-bottom: 10px;
+    .content {
+      display: flex;
+      align-items: center;
+      a[id="btLogo"] {
+        width: 12rem;
+        img {
+          width: 100%
+        }
       }
-
-      input {
-        background-color: var(--rodape_formulario_fundo);
-        color: var(--rodape_formulario_texto);
-        width: calc(100% - 120px);
-        height: 30px;
+      .box {
+        width: 100%;
         float: left;
-        padding: 0 10px;
-      }
-
-      button {
-        &[type="submit"] {
-          width: 120px;
-          float: left;
-          background-color: var(--rodape_newsletter_botao_fundo);
-          color: var(--rodape_newsletter_botao_texto);
+        padding: 15px;
+        background-color: var(--rodape_newsletter_fundo);
+        color: var(--rodape_newsletter_texto);
+  
+        p {
+          margin-bottom: 10px;
+        }
+  
+        input {
+          background-color: var(--rodape_formulario_fundo);
+          color: var(--rodape_formulario_texto);
+          width: calc(100% - 120px);
           height: 30px;
-
-          &:active {
-            opacity: 0.8;
+          float: left;
+          padding: 0 10px;
+        }
+        
+        button {
+          &[type="submit"] {
+            width: 120px;
+            float: left;
+            background-color: var(--rodape_newsletter_botao_fundo);
+            color: var(--rodape_newsletter_botao_texto);
+            height: 30px;
+  
+            &:active {
+              opacity: 0.8;
+            }
           }
         }
       }
     }
+    
   }
 }
 
@@ -258,50 +268,61 @@ footer {
   background: var(--mt_amarelo);
   float: none;
   clear: both;
-	padding: 3rem 1rem;
-	> .central {
-		display: flex;
+  padding: 3rem 1rem;
+  > .central {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-		.titulo {
-			font-size: 1.4rem;
-			color: #FFF;
-			text-transform: uppercase;
-			font-size: 500;
-			margin: 0 0 3rem 0;
-			&:after {
-				display: none;
-			}
-		}
-		.box {
-			form {
-				display: flex;
-				gap: 3rem;
-				justify-content: space-between;
-				input {
-					width: 25rem;
-					border: 0;
-					border-bottom: 1px solid #000;
-					background: transparent;
-					height: 3rem;
-					font-size: 1.1rem;
-					&::placeholder {
-						color: #000!important;
-						opacity: 1;
-					}
-				}
-				button {
-					width: 13rem;
-					height: 3rem;
-					border: 1px solid #000;
-					background: #000;
-					color: #FFF;
-					font-size: 1.1rem;
-				}
-			}
-		}
-	}
+    .titulo {
+      font-size: 1.4rem;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 500;
+      margin: 0 0 3rem 0;
+      &:after {
+        display: none;
+      }
+    }
+    .content {
+      display: flex;
+      align-items: center;
+      gap: 10rem;
+      a[id="btLogo"] {
+        width: 12rem;
+        img {
+          width: 100%
+        }
+      }
+    }
+    .box {
+      form {
+        display: flex;
+        gap: 3rem;
+        justify-content: space-between;
+        input {
+          width: 25rem;
+          border: 0;
+          border-bottom: 1px solid #000;
+          background: transparent;
+          height: 3rem;
+          font-size: 1.1rem;
+          &::placeholder {
+            color: #000 !important;
+            opacity: 1;
+          }
+        }
+        button {
+          width: 13rem;
+          height: 3rem;
+          border: 1px solid #000;
+          background: #000;
+          color: #fff;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -434,12 +455,16 @@ footer#rodape {
 }
 
 @media (max-width: 768px) {
-	.news {
-		form {
-			flex-direction: column!important;
-			align-items: center!important;
-		}
-	}
+  .news {
+    .content {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    form {
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+  }
   footer#rodape {
     padding: 1rem;
     > .central {

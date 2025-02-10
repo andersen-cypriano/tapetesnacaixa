@@ -374,7 +374,7 @@
       width: 45%;
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: center;
       h1 {
         font-size: 3rem;
         text-transform: uppercase;
@@ -388,11 +388,88 @@
         font-weight: 600;
         margin-bottom: 2rem;
       }
+      .texto {
+        font-size: 1.7rem;
+        margin-bottom: 5rem;
+      }
       span {
         font-size: 2rem;
         color: var(--mt_cinza);
       }
     }
+  }
+}
+
+div[id^="vitrine_"] .produtos {
+  > div:has(.info) {
+    display: none !important;
+  }
+}
+
+.banner-video-02 {
+  background: #ffb000;
+  padding: 5rem 0 0 0;
+  .content {
+    display: flex;
+    float: none;
+    clear: both;
+    gap: 5rem;
+    max-width: 118rem;
+    margin: 0 auto 5rem auto;
+    justify-content: center;
+    .info {
+      width: 45%;
+      .subtitulo {
+        color: #4d4d4d;
+        text-transform: uppercase;
+        font-size: 4rem;
+        display: block;
+        margin-bottom: 3rem;
+      }
+      .titulo {
+        float: none;
+        clear: both;
+        text-align: left;
+        margin: 0 0 6rem 0;
+        padding: 0;
+        font-size: 7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #fff;
+        &::after {
+          display: none;
+        }
+      }
+      .texto {
+        font-size: 1.8rem;
+        color: #4d4d4d;
+        margin-bottom: 4rem;
+        + span {
+          font-size: 2rem;
+          text-transform: uppercase;
+          color: #4d4d4d;
+        }
+      }
+    }
+    .content-videos {
+      display: flex;
+      width: 50%;
+      gap: 3rem;
+      justify-content: center;
+      > div {
+        width: 20rem;
+        height: 27rem;
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+  &::after {
+    content: "";
+    width: 100%;
+    height: 20rem;
+    background: url(https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/bg_content_videos.svg);
+    display: block;
+    background-size: 16%;
   }
 }
 
@@ -463,12 +540,85 @@
         }
         .texto {
           margin-bottom: 1.5rem;
-
         }
       }
     }
   }
+
+
+  .banner-video-02 {
+    padding: 5rem 0 0 0;
+    margin-bottom: 3rem;
+    .content {
+      display: block;
+      float: none;
+      clear: both;
+      gap: 5rem;
+      max-width: 118rem;
+      margin: 0 auto 5rem auto;
+      justify-content: center;
+      .info {
+        width: 100%;
+        margin-bottom: 3rem;
+        text-align: center;
+        padding: 0 1rem;
+        .subtitulo {
+          color: #4d4d4d;
+          text-transform: uppercase;
+          font-size: 3rem;
+          display: block;
+          margin-bottom: 3rem;
+        }
+        .titulo {
+          float: none;
+          clear: both;
+          text-align: left;
+          margin: 0 0 6rem 0;
+          padding: 0;
+          font-size: 5.2rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: #fff;
+          &::after {
+            display: none;
+          }
+        }
+        .texto {
+          font-size: 1.8rem;
+          color: #4d4d4d;
+          margin-bottom: 4rem;
+          + span {
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: #4d4d4d;
+          }
+        }
+      }
+      .content-videos {
+        display: flex;
+        width: 100%;
+        gap: 3rem;
+        justify-content: center;
+        padding: 0 1rem;
+        > div {
+          width: 20rem;
+          height: 27rem;
+          background: rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+    &::after {
+      content: "";
+      width: 100%;
+      height: 20rem;
+      background: url(https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/bg_content_videos.svg);
+      display: block;
+      background-size: 63%;
+    }
+  }
 }
+
+
 
 @media screen and (max-width: 576px) {
 }
