@@ -1,17 +1,20 @@
 {% set avaliacoes = store.getRatings() %}
 
 {% if avaliacoes.items|length > 0 %}
-<section id="widget_avaliacoes" class="block mb-4">
+<section id="widget_avaliacoes">
 	<div class="central">
-		<h2 class="titulo">O QUE ESTÃO FALANDO DA GENTE</h2>
-		<div class="itens owl-carousel owl-theme px-3 mb-4">
-			{{ avaliacoes.raw|raw }}
-		</div>
-		<div class="row mb-4">
-			<div class="col text-center">
-				<a href="avaliacoes/" class="text-dark">Ver todas as avaliações</a>
-			</div>
-		</div>
+        <div class="bg">
+            <img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/bg.png" alt="">
+            <span></span>
+        </div>
+		<div class="info">
+            <h2 class="titulo">/DO SEU JEITO</h2>
+            <div class="itens owl-carousel owl-theme">
+                {{ avaliacoes.raw|raw }}
+            </div>
+            <a href="avaliacoes/" class="text-dark">Ver todas as avaliações</a>
+        </div>
+		
 	</div>
 </section>
 
@@ -23,7 +26,7 @@
             autoplayHoverPause: true,
             loop: $('#widget_avaliacoes .itens .item').length > 3,
             dots: true,
-            nav: false,
+            nav: true,
             margin: 15,
             animateOut: 'bounceOutLeft',
             animateIn: 'bounceInRight',
@@ -32,13 +35,13 @@
                     items: 1,
                 },
                 598: {
-                    items: 2,
+                    items: 1,
                 },
                 800: {
-                    items: 3,
+                    items: 2,
                 },
                 1024:{
-                    items: 4,
+                    items: 2,
                 }
             }
         });
