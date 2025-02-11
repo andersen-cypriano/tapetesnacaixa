@@ -207,12 +207,13 @@ header {
           font-size: 16px;
           line-height: 18px;
           margin-bottom: 5px;
+          color: var(--mt_amarelo)!important;
         }
 
         p {
-          font-size: 14px;
+          font-size: 1.4rem!important;
           line-height: 16px;
-          color: #f60;
+          color: var(--mt_cinza);
         }
       }
     }
@@ -522,6 +523,7 @@ header {
 			display: flex;
       width: 56%;
       justify-content: center;
+      text-decoration: none!important;
     }
     .pull-right {
       width: 25%;

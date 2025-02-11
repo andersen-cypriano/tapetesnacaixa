@@ -389,3 +389,12 @@ main.categorias {
   font-size: 1.7rem!important;
   color: var(--mt_amarelo)!important;
 }
+
+section[id="finish"] {
+  padding-top: 13rem;
+  .main {
+     > header {
+      display: none!important;
+     }
+  }
+}
