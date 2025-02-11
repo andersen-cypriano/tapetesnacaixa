@@ -116,6 +116,9 @@ html {
   .item {
     background-color: transparent !important;
     border: 0 !important;
+    .rate_box {
+      display: none;
+    }
     .show-colors > span {
       display: inline-block!important;
     }
@@ -331,4 +334,58 @@ main.categorias {
   .row:has(.orderby) {
     display: none !important;
   }
+}
+
+
+// CARRINHO SUSPENSO
+.suspended-cart {
+  .content {
+    .drop-header {
+      h3 {
+        color: var(--mt_amarelo);
+      }
+      .fechar {
+        border: 0!important;
+        font-size: 3rem;
+        color: var(--mt_amarelo);
+      }
+    }
+    .msg-empty {
+      a.adicionar-agora {
+        background: #000;
+        border-radius: 0;
+      }
+    }
+    .drop-list {
+      .item {
+        .foto {}
+        .det {
+          h3.produto {
+            strong {
+              color: var(--mt_amarelo);
+            }
+          }
+        }
+        
+      }
+      
+    }
+    .botoes {
+      a.bt-continuar {
+        border: 0!important;
+        background: var(--mt_amarelo)!important;
+        color: #000!important;
+      }
+      a.bt-finalizar {
+        border: 0!important;
+        background: #000!important;
+        color: #FFF!important;
+      }
+    }
+  }
+}
+.btn-delete-item {
+  border: 0!important;
+  font-size: 1.7rem!important;
+  color: var(--mt_amarelo)!important;
 }

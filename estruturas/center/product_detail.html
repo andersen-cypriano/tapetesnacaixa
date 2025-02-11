@@ -12,10 +12,10 @@
 			<nav class="mb-4" arial-label="breadcrumb">
 				<ol class="breadcrumb" itemprop="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 					{% for bread in produto.breadcrumbs %}
-						<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-							<a href="{{ bread.url }}" itemprop="item"><span itemprop="name">{{ bread.page }}</span></a>
-							<meta itemprop="position" content="{{ loop.index }}" />
-						</li>
+					<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+						<a href="{{ bread.url }}" itemprop="item"><span itemprop="name">{{ bread.page }}</span></a>
+						<meta itemprop="position" content="{{ loop.index }}" />
+					</li>
 					{% endfor %}
 				</ol>
 			</nav>
@@ -24,162 +24,163 @@
 		<div class="central" itemtype="https://schema.org/Product" itemscope>
 			<div class="cln">
 				{% if produto.photos|length >= 1 %}
-					{% if produto.photos_type == '1' %}
-						<div class="fotos">
-							<div class="mini">
-								{% for foto in produto.photos %}
-									<div class="item foto_{{ foto.cor_count ?? 0 }}{{ foto.video_raw ? ' video' : ''}}" data-cor="{{ foto.cor_id }}">
-										<img src="{{ foto.foto_mini }}" alt="{{ produto.product }}" class="img-cover" />
-									</div>
-								{% endfor %}
-							</div>
-							<div class="big">
-								{% for foto in produto.photos %}
-									{% if foto.video_raw %}
-										<div class="item video" data-cor="">
-											{{ foto.video_raw }}
-										</div>
-									{% else %}
-										<div class="item easyzoom easyzoom--overlay" data-cor="{{ foto.cor_id }}">
-											<a href="{{ foto.foto }}" data-standard="{{ foto.foto }}" class="fresco">
-												{% if foto.legenda %}
-													<span class="legenda">{{ foto.legenda }}</span>
-												{% endif %}
-												<img src="{{ foto.foto }}" alt="{{ produto.product }}" class="img-cover" />
-											</a>
-										</div>
-									{% endif %}
-								{% endfor %}
-							</div>
-							<div class="setas">
-								<span class="seta prev"><i class="fa fa-chevron-left"></i></span>				    
-								<span class="seta next"><i class="fa fa-chevron-right"></i></span>				    
-							</div>
+				{% if produto.photos_type == '1' %}
+				<div class="fotos">
+					<div class="mini">
+						{% for foto in produto.photos %}
+						<div class="item foto_{{ foto.cor_count ?? 0 }}{{ foto.video_raw ? ' video' : ''}}"
+							data-cor="{{ foto.cor_id }}">
+							<img src="{{ foto.foto_mini }}" alt="{{ produto.product }}" class="img-cover" />
 						</div>
-					{% elseif produto.photos_type == '2' %}
-						<div class="fotos-carousel">
-							<div class="setas">
-								<span class="prev"><i class="fa fa-angle-left"></i></span>
-								<span class="next"><i class="fa fa-angle-right"></i></span>
-							</div>
-							<div class="carousel">
-								{% for foto in produto.photos %}
-									{% if foto.video_raw %}
-										<div class="item" data-cor="">
-											{{ foto.video_raw }}
-										</div>
-									{% else %}
-										<div class="item easyzoom easyzoom--overlay" data-cor="{{ foto.cor_id }}">
-											<a href="{{ foto.foto }}" data-standard="{{ foto.foto }}" class="fresco">
-												{% if foto.legenda %}
-													<span class="legenda">{{ foto.legenda }}</span>
-												{% endif %}
-												<img src="{{ foto.foto }}" alt="{{ produto.product }}" class="img-cover" />
-											</a>
-										</div>
-									{% endif %}
-								{% endfor %}
-							</div>
+						{% endfor %}
+					</div>
+					<div class="big">
+						{% for foto in produto.photos %}
+						{% if foto.video_raw %}
+						<div class="item video" data-cor="">
+							{{ foto.video_raw }}
 						</div>
-					{% endif %}
+						{% else %}
+						<div class="item easyzoom easyzoom--overlay" data-cor="{{ foto.cor_id }}">
+							<a href="{{ foto.foto }}" data-standard="{{ foto.foto }}" class="fresco">
+								{% if foto.legenda %}
+								<span class="legenda">{{ foto.legenda }}</span>
+								{% endif %}
+								<img src="{{ foto.foto }}" alt="{{ produto.product }}" class="img-cover" />
+							</a>
+						</div>
+						{% endif %}
+						{% endfor %}
+					</div>
+					<div class="setas">
+						<span class="seta prev"><i class="fa fa-chevron-left"></i></span>
+						<span class="seta next"><i class="fa fa-chevron-right"></i></span>
+					</div>
+				</div>
+				{% elseif produto.photos_type == '2' %}
+				<div class="fotos-carousel">
+					<div class="setas">
+						<span class="prev"><i class="fa fa-angle-left"></i></span>
+						<span class="next"><i class="fa fa-angle-right"></i></span>
+					</div>
+					<div class="carousel">
+						{% for foto in produto.photos %}
+						{% if foto.video_raw %}
+						<div class="item" data-cor="">
+							{{ foto.video_raw }}
+						</div>
+						{% else %}
+						<div class="item easyzoom easyzoom--overlay" data-cor="{{ foto.cor_id }}">
+							<a href="{{ foto.foto }}" data-standard="{{ foto.foto }}" class="fresco">
+								{% if foto.legenda %}
+								<span class="legenda">{{ foto.legenda }}</span>
+								{% endif %}
+								<img src="{{ foto.foto }}" alt="{{ produto.product }}" class="img-cover" />
+							</a>
+						</div>
+						{% endif %}
+						{% endfor %}
+					</div>
+				</div>
 				{% endif %}
-				
+				{% endif %}
+
 				<div class="descricao">
 					<h2 class="t">DESCRIÇÃO</h2>
 					<div class="texto">
 						{{ produto.description|raw }}
 					</div>
 				</div>
-				
+
 				{% if produto.video.video_raw %}
-					<div class="block mb-3" style="height: 350px;">
-						{{ produto.video.video_raw }}
-					</div>
+				<div class="block mb-3" style="height: 350px;">
+					{{ produto.video.video_raw }}
+				</div>
 				{% endif %}
-				
+
 				{% if produto.specification|raw %}
-					<div class="descricao hidden">
-						<h2 class="t">ESPECIFICAÇÕES</h2>
-						<div class="texto">
-							{{ produto.specification|raw }}
-						</div>
+				<div class="descricao hidden">
+					<h2 class="t">ESPECIFICAÇÕES</h2>
+					<div class="texto">
+						{{ produto.specification|raw }}
 					</div>
+				</div>
 				{% endif %}
-				
+
 				{% if produto.attributes %}
-					<div class="descricao hidden">
-						<h2 class="t">ATRIBUTOS</h2>
-						<div class="texto">
-							<div class="table">
-								{% for attr in produto.attributes %}
-									{% set valores = {} %}
-									{% for valor in attr.valores %}
-										{% set valores = valores|merge({(loop.index):valor.nome}) %}
-									{% endfor %}
-									<div class="item no-hover">
-										<div class="tb40">
-											{{ attr.nome }}
-										</div>
-										<div class="tb60">
-											<p>{{ valores|join(", ") }}</p>
-										</div>
-									</div>
-								{% endfor %}
+				<div class="descricao hidden">
+					<h2 class="t">ATRIBUTOS</h2>
+					<div class="texto">
+						<div class="table">
+							{% for attr in produto.attributes %}
+							{% set valores = {} %}
+							{% for valor in attr.valores %}
+							{% set valores = valores|merge({(loop.index):valor.nome}) %}
+							{% endfor %}
+							<div class="item no-hover">
+								<div class="tb40">
+									{{ attr.nome }}
+								</div>
+								<div class="tb60">
+									<p>{{ valores|join(", ") }}</p>
+								</div>
 							</div>
+							{% endfor %}
 						</div>
 					</div>
+				</div>
 				{% endif %}
-				
+
 				{% if produto.items|raw %}
-					<div class="descricao hidden">
-						<h2 class="t">ÍTENS INCLUSOS</h2>
-						<div class="texto">
-							{{ produto.items|raw }}
-						</div>
+				<div class="descricao hidden">
+					<h2 class="t">ÍTENS INCLUSOS</h2>
+					<div class="texto">
+						{{ produto.items|raw }}
 					</div>
+				</div>
 				{% endif %}
-				
+
 				{% if produto.warranty|raw %}
-					<div class="descricao hidden">
-						<h2 class="t">GARANTIA</h2>
-						<div class="texto">
-							<p>{{ produto.warranty }}</p>
-						</div>
+				<div class="descricao hidden">
+					<h2 class="t">GARANTIA</h2>
+					<div class="texto">
+						<p>{{ produto.warranty }}</p>
 					</div>
+				</div>
 				{% endif %}
 			</div>
-			
+
 			<div class="cln">
 				{% for foto in produto.photos if not foto.video_raw %}
-					<link itemprop="image" href="{{ foto.foto }}" />
+				<link itemprop="image" href="{{ foto.foto }}" />
 				{% endfor %}
 				<meta itemprop="mpn" content="{{ produto.code }}" />
 				<meta itemprop="description" content="{{ produto.description|striptags }}" />
 				{% if produto.product.brand.nome %}
-					<div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
-						<meta itemprop="name" content="{{ produto.brand.nome }}" />
-					</div>
+				<div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+					<meta itemprop="name" content="{{ produto.brand.nome }}" />
+				</div>
 				{% endif %}
 
 				<div class="mobile-fotos">
 					<div class="carrossel">
 						{% for foto in produto.photos %}
-							{% if foto.video_raw %}
-								<div class="item video" data-cor="{{ foto.cor_id }}">
-									{{ foto.video_raw }}
-								</div>
-							{% else %}
-								<div class="item fresco" data-cor="{{ foto.cor_id }}">
-									{% if foto.legenda %}
-									<span class="legenda">{{ foto.legenda }}</span>
-									{% endif %}
-									<img src="{{ foto.foto }}" alt="{{ produto.product }}" class="img-fluid" />
-								</div>
+						{% if foto.video_raw %}
+						<div class="item video" data-cor="{{ foto.cor_id }}">
+							{{ foto.video_raw }}
+						</div>
+						{% else %}
+						<div class="item fresco" data-cor="{{ foto.cor_id }}">
+							{% if foto.legenda %}
+							<span class="legenda">{{ foto.legenda }}</span>
 							{% endif %}
+							<img src="{{ foto.foto }}" alt="{{ produto.product }}" class="img-fluid" />
+						</div>
+						{% endif %}
 						{% endfor %}
 					</div>
 					<span class="setas prev"><i class="fa fa-chevron-left"></i></span>
-                    <span class="setas next"><i class="fa fa-chevron-right"></i></span>
+					<span class="setas next"><i class="fa fa-chevron-right"></i></span>
 				</div>
 
 				<div class="detalhes">
@@ -188,13 +189,17 @@
 					<p class="codigo_produto">
 						<span itemprop="identifier" content="mpn:{{ produto.code }}">Cód.: {{ produto.code }}</span>
 						{% if produto.brand.nome %}
-							<span>Marca: <a href="{{ produto.brand.url }}" class="text-dark"><span>{{ produto.brand.nome }}</span></a></span>
+						<span>Marca: <a href="{{ produto.brand.url }}"
+								class="text-dark"><span>{{ produto.brand.nome }}</span></a></span>
 						{% endif %}
 					</p>
 					<div class="block d-flex align-items-center mb-3">
-						<span class="mr-3" style="font-size: 13px; color: #666;"><i class="fa fa-heart fa-fw text-danger" style="font-size: 18px; line-height: 24px;"></i> (<span class="curtidas">{{ produto.likes }}</span>)</span>
+						<span class="mr-3" style="font-size: 13px; color: #666;"><i class="fa fa-heart fa-fw text-danger"
+								style="font-size: 18px; line-height: 24px;"></i> (<span
+								class="curtidas">{{ produto.likes }}</span>)</span>
 						{% if produto.rating.votes.total >= 1 %}
-						<div class="rating stars" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+						<div class="rating stars" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating"
+							itemscope>
 							<meta itemprop="reviewCount" content="{{ produto.rating.votes.total }}" />
 							<meta itemprop="ratingValue" content="{{ produto.rating.votes.pontos }}" />
 							<span class="vote" style="width:{{ produto.rating.percent }}%">({{ produto.rating.votes.total }})</span>
@@ -207,58 +212,62 @@
 						{{ include('widgets/produto-sku-html.html') }}
 					</div>
 					{#{ dynamic_include|raw }#}
-					
+
 					{% if produto.features != '' %}
-						<div class="block caracteristicas mt-2 mb-3">
-							<p>{{ produto.features }}</p>
-						</div>
+					<div class="block caracteristicas mt-2 mb-3">
+						<p>{{ produto.features }}</p>
+					</div>
 					{% endif %}
-					
+
 					<component data-modulo="product-grouper" loading="false" data-pid="{{ produto.id }}"></component>
 
 					{% if geral.hasOpolen %}
 					<opolen></opolen>
 					{% endif %}
-					
+
 					{% if produto.store.isFilial %}
-						<div class="block mb-2 fornecedor">
-							<p><strong>Vendido e entregue por:</strong> <a href="{{ produto.store.url_interna_matriz }}">{{ produto.store.nome }}</a></p>
-						</div>
+					<div class="block mb-2 fornecedor">
+						<p><strong>Vendido e entregue por:</strong> <a
+								href="{{ produto.store.url_interna_matriz }}">{{ produto.store.nome }}</a></p>
+					</div>
 					{% endif %}
 
 					{% if produto.allow_comments %}
-						<div class="comentarios mb-4">
-							<div class="mt-3">
-								{% if extra.id not in session.curtidos %}
-									<a href="" class="btn btn-light curtir"><i class="fa fa-fw fa-heart-o text-danger"></i> Curtir</a>
-								{% else %}
-									<span class="btn btn-light disabled"><i class="fa fa-fw fa-heart text-success"></i> Curtiu!</span>
-								{% endif %}
-								<a href="" class="btn btn-light mymodal" data-include="inc.php?meio=produtos_det_comentar&id={{ extra.id }}" data-width="400" data-title="Avaliar"><i class="fa fa-fw fa-comment text-info"></i> Avaliar</a>
-							</div>
-
-							{{ include('includes/product_comments.html') }}
+					<div class="comentarios mb-4">
+						<div class="mt-3">
+							{% if extra.id not in session.curtidos %}
+							<a href="" class="btn btn-light curtir"><i class="fa fa-fw fa-heart-o text-danger"></i> Curtir</a>
+							{% else %}
+							<span class="btn btn-light disabled"><i class="fa fa-fw fa-heart text-success"></i> Curtiu!</span>
+							{% endif %}
+							<a href="" class="btn btn-light mymodal"
+								data-include="inc.php?meio=produtos_det_comentar&id={{ extra.id }}" data-width="400"
+								data-title="Avaliar"><i class="fa fa-fw fa-comment text-info"></i> Avaliar</a>
 						</div>
+
+						{{ include('includes/product_comments.html') }}
+					</div>
 					{% endif %}
 
 					{% if produto.attachments|length >= 1 %}
-						<div class="row">
-							<div class="col">
-								<p class="text-muted mb-1">ANEXOS</p>
-								{% for anexo in produto.attachments %}
-								<p><a href="{{ anexo.arquivo }}" download="{{ anexo.filename_download }}" class="text-info"><i class="fa fa-paperclip fa-fw"></i> {{ anexo.titulo }}</a></p>
-								{% endfor %}
-							</div>
+					<div class="row">
+						<div class="col">
+							<p class="text-muted mb-1">ANEXOS</p>
+							{% for anexo in produto.attachments %}
+							<p><a href="{{ anexo.arquivo }}" download="{{ anexo.filename_download }}" class="text-info"><i
+										class="fa fa-paperclip fa-fw"></i> {{ anexo.titulo }}</a></p>
+							{% endfor %}
 						</div>
+					</div>
 					{% endif %}
 
 					{% if not global.desabilita_socialshare %}
-						<div class="row">
-							<div class="col">
-								<p class="text-muted mb-1">Compartilhe</p>
-								{{ include('includes/share.html') }}
-							</div>
+					<div class="row">
+						<div class="col">
+							<p class="text-muted mb-1">Compartilhe</p>
+							{{ include('includes/share.html') }}
 						</div>
+					</div>
 					{% endif %}
 				</div>
 
@@ -270,62 +279,62 @@
 						</div>
 					</div>
 					{% if produto.video.video_raw %}
-						<div class="block mb-3" style="height: 350px;">
-							{{ produto.video.video_raw }}
-						</div>
+					<div class="block mb-3" style="height: 350px;">
+						{{ produto.video.video_raw }}
+					</div>
 					{% endif %}
 					{% if produto.specification|raw %}
-						<div class="descricao hidden">
-							<h2 class="t">ESPECIFICAÇÕES</h2>
-							<div class="texto">
-								{{ produto.specification|raw }}
-							</div>
+					<div class="descricao hidden">
+						<h2 class="t">ESPECIFICAÇÕES</h2>
+						<div class="texto">
+							{{ produto.specification|raw }}
 						</div>
+					</div>
 					{% endif %}
 					{% if produto.attributes %}
-						<div class="descricao hidden">
-							<h2 class="t">ATRIBUTOS</h2>
-							<div class="texto">
-								<div class="table">
-									{% for attr in produto.attributes %}
-										{% set valores = {} %}
-										{% for valor in attr.valores %}
-											{% set valores = valores|merge({(loop.index):valor.nome}) %}
-										{% endfor %}
-										<div class="item no-hover">
-											<div class="tb40">
-												{{ attr.nome }}
-											</div>
-											<div class="tb60">
-												<p>{{ valores|join(", ") }}</p>
-											</div>
-										</div>
-									{% endfor %}
+					<div class="descricao hidden">
+						<h2 class="t">ATRIBUTOS</h2>
+						<div class="texto">
+							<div class="table">
+								{% for attr in produto.attributes %}
+								{% set valores = {} %}
+								{% for valor in attr.valores %}
+								{% set valores = valores|merge({(loop.index):valor.nome}) %}
+								{% endfor %}
+								<div class="item no-hover">
+									<div class="tb40">
+										{{ attr.nome }}
+									</div>
+									<div class="tb60">
+										<p>{{ valores|join(", ") }}</p>
+									</div>
 								</div>
+								{% endfor %}
 							</div>
 						</div>
+					</div>
 					{% endif %}
 					{% if produto.items|raw %}
-						<div class="descricao hidden">
-							<h2 class="t">ÍTENS INCLUSOS</h2>
-							<div class="texto">
-								{{ produto.items|raw }}
-							</div>
+					<div class="descricao hidden">
+						<h2 class="t">ÍTENS INCLUSOS</h2>
+						<div class="texto">
+							{{ produto.items|raw }}
 						</div>
+					</div>
 					{% endif %}
 					{% if produto.warranty|raw %}
-						<div class="descricao hidden">
-							<h2 class="t">GARANTIA</h2>
-							<div class="texto">
-								<p>{{ produto.warranty }}</p>
-							</div>
+					<div class="descricao hidden">
+						<h2 class="t">GARANTIA</h2>
+						<div class="texto">
+							<p>{{ produto.warranty }}</p>
 						</div>
+					</div>
 					{% endif %}
 				</div>
 			</div>
 		</div>
 	</section>
-	
+
 	{% set compreJunto = html.buyTogether(produto.id) %}
 	{{ compreJunto ? compreJunto|raw : '' }}
 
@@ -334,22 +343,22 @@
 	{% endif %}
 
 	{% if relacionados|length > 0 %}
-		<section class="block produtos-relacionados">
-			<div class="central">
-				<h2 class="titulo mb-3">PRODUTOS RELACIONADOS</h2>
-				<div class="produtos">
-					<div class="row justify-content-center">
-						{% for produto in relacionados %}
-						<div class="col-md-3">
-							{{ include('widgets/box-do-produto.html') }}
-						</div>
-						{% endfor %}
+	<section class="block produtos-relacionados">
+		<div class="central">
+			<h2 class="titulo mb-3">PRODUTOS RELACIONADOS</h2>
+			<div class="produtos">
+				<div class="row justify-content-center">
+					{% for produto in relacionados %}
+					<div class="col-md-3">
+						{{ include('widgets/box-do-produto.html') }}
 					</div>
+					{% endfor %}
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 	{% endif %}
-	
+
 	{{ include('widgets/banners-23.html') }}
 </main>
 
@@ -362,60 +371,63 @@
 {% endif %}
 
 <script>
-$(function(){
-	$('.mobile-fotos .carrossel').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        infinite: true,
-        dots: true,
-        arrows: false,
-        speed: 100,
-    });
+	$(function () {
+		$('.mobile-fotos .carrossel').slick({
+			slidesToShow: 1,
+			slidesToScroll: 1,
+			infinite: true,
+			dots: true,
+			arrows: false,
+			speed: 100,
+		});
 
-    setTimeout(function(){
-        $('.mobile-fotos .carrossel').slick('slickSetOption', "adaptiveHeight", true, true);
-    }, 200);
+		setTimeout(function () {
+			$('.mobile-fotos .carrossel').slick('slickSetOption', "adaptiveHeight", true, true);
+		}, 200);
 
-    $('.mobile-fotos .setas.prev').click(function(){
-        $('.mobile-fotos .carrossel').slick('slickPrev');
-    });
+		$('.mobile-fotos .setas.prev').click(function () {
+			$('.mobile-fotos .carrossel').slick('slickPrev');
+		});
 
-    $('.mobile-fotos .setas.next').click(function(){
-        $('.mobile-fotos .carrossel').slick('slickNext');
-    });
+		$('.mobile-fotos .setas.next').click(function () {
+			$('.mobile-fotos .carrossel').slick('slickNext');
+		});
 
-    $('.easyzoom').easyZoom({
-        loadingNotice: 'carregando...',
-        errorNotice: 'erro ao carregar zoom da imagem'
-    });
+		$('.easyzoom').easyZoom({
+			loadingNotice: 'carregando...',
+			errorNotice: 'erro ao carregar zoom da imagem'
+		});
 
-    $('#geral').on('click', '.fotos .big .item, .fotos-carousel .item', function(e){
-        e.preventDefault();
-        let href = $('a.fresco', this).attr('href');
-        Fresco.show({
-            url: href,
-            options: {
-                overflow: true,
-                onClick: 'close',
-            }
-        })
-    });
+		$('#geral').on('click', '.fotos .big .item, .fotos-carousel .item', function (e) {
+			e.preventDefault();
+			let href = $('a.fresco', this).attr('href');
+			Fresco.show({
+				url: href,
+				options: {
+					overflow: true,
+					onClick: 'close',
+				}
+			})
+		});
 
-    $('#geral').on('click', '.mobile-fotos .item.fresco', function(e){
-        e.preventDefault();
-        let href = $('img', this).attr('src');
-        if(href){
-            Fresco.show({
-                url: href,
-                options: {
-                    overflow: true,
-                    onClick: 'close',
-                }
-            });
-        }
-    });
-	
-	{% if produto.photos_type == '1' %}
+		$('#geral').on('click', '.mobile-fotos .item.fresco', function (e) {
+			e.preventDefault();
+			let href = $('img', this).attr('src');
+			if (href) {
+				Fresco.show({
+					url: href,
+					options: {
+						overflow: true,
+						onClick: 'close',
+					}
+				});
+			}
+		});
+
+		{
+			%
+			if produto.photos_type == '1' %
+		}
 		$('.fotos .big').slick({
 			slidesToShow: 1,
 			slidesToScroll: 1,
@@ -429,7 +441,7 @@ $(function(){
 			adaptiveHeight: true,
 		});
 
-		setTimeout(function(){
+		setTimeout(function () {
 			$('.fotos .big').slick('slickSetOption', "adaptiveHeight", true, true);
 		}, 200);
 
@@ -448,24 +460,25 @@ $(function(){
 
 		$('.fotos .mini').slick('slickSetOption', 'initialSlide', 1);
 
-		$('.fotos .setas .prev').click(function(){
+		$('.fotos .setas .prev').click(function () {
 			let currentSlide = $('.fotos .mini').slick('slickCurrentSlide');
 			let newCurrent = currentSlide - 1;
-			if(newCurrent < 0)
+			if (newCurrent < 0)
 				newCurrent = 0;
 			$('.fotos .mini').slick('slickGoTo', newCurrent, true);
 		});
 
-		$('.fotos .setas .next').click(function(){
+		$('.fotos .setas .next').click(function () {
 			let currentSlide = $('.fotos .mini').slick('slickCurrentSlide');
 			let total = $('.fotos .mini .item').length;
 			let newCurrent = currentSlide + 1;
-			if(newCurrent > total)
+			if (newCurrent > total)
 				newCurrent = total;
 			$('.fotos .mini').slick('slickGoTo', newCurrent, true);
-		});
-	 {% elseif produto.photos_type == '2' %}
-		 $('.fotos-carousel .carousel').slick({
+		}); {
+			% elseif produto.photos_type == '2' %
+		}
+		$('.fotos-carousel .carousel').slick({
 			slidesToShow: 2,
 			slidesToScroll: 1,
 			infinite: true,
@@ -474,39 +487,66 @@ $(function(){
 			speed: 100,
 		});
 
-		$('.fotos-carousel .setas .prev').click(function(){
+		$('.fotos-carousel .setas .prev').click(function () {
 			$('.fotos-carousel .carousel').slick('slickPrev');
 		});
 
-		$('.fotos-carousel .setas .next').click(function(){
+		$('.fotos-carousel .setas .next').click(function () {
 			$('.fotos-carousel .carousel').slick('slickNext');
+		}); {
+			% endif %
+		}
+
+		$('#produto .descricao .t').click(function (e) {
+			if ($(this).parents('.descricao').hasClass('hidden')) {
+				$(this).next('.texto').show(100);
+				$(this).parents('.descricao').removeClass('hidden');
+			} else {
+				$(this).next('.texto').hide(100);
+				$(this).parents('.descricao').addClass('hidden');
+			}
 		});
-	 {% endif %}
-	 
-	 $('#produto .descricao .t').click(function(e){
-		 if($(this).parents('.descricao').hasClass('hidden')){
-			 $(this).next('.texto').show(100);
-			 $(this).parents('.descricao').removeClass('hidden');
-		 }else{
-			 $(this).next('.texto').hide(100);
-			 $(this).parents('.descricao').addClass('hidden');
-		 }
-	 });
 
-	  {% if geral.hasSmartHint %}
-	  	SmartHint.Call('setPage',{type:'product', data: {} });
-	  {% endif %}
-	  
-	  $('.curtir').click(function(e){
-		  e.preventDefault();
+		{
+			%
+			if geral.hasSmartHint %
+		}
+		SmartHint.Call('setPage', {
+			type: 'product',
+			data: {}
+		}); {
+			% endif %
+		}
 
-		  var _th = $(this);
-		  _th.html('Curtindo...');
+		$('.curtir').click(function (e) {
+			e.preventDefault();
 
-		  $.post('produtos_func.php', {funcao:'c2220d356b3fa223ef2a63f869875313', id:'{{ extra.id }}'}, function(d){
-			  $('#response').html(d);
-			  _th.removeClass('curtir').addClass('disabled').html('<i class="fa fa-fw fa-heart text-success"></i> Curtiu!');
-		  });
-	  });
-});
+			var _th = $(this);
+			_th.html('Curtindo...');
+
+			$.post('produtos_func.php', {
+				funcao: 'c2220d356b3fa223ef2a63f869875313',
+				id: '{{ extra.id }}'
+			}, function (d) {
+				$('#response').html(d);
+				_th.removeClass('curtir').addClass('disabled').html(
+					'<i class="fa fa-fw fa-heart text-success"></i> Curtiu!');
+			});
+		});
+	});
+</script>
+
+<script>
+	window.addEventListener("load", () => {
+		document.querySelectorAll('.btn-cores').forEach(element => {
+			element.addEventListener('click', (e) => {
+				e.target.previousSibling.classList.toggle('show-colors');
+			})
+		})
+		document.querySelectorAll('.btn-tamanhos').forEach(element => {
+			element.addEventListener('click', (e) => {
+				e.target.previousSibling.classList.toggle('show-tamanhos');
+			})
+		})
+	});
 </script>
