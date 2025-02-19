@@ -3,14 +3,22 @@
 <div id="alerts">
 	<div class="central">
 		{% for alerta in alertas %}
-			{% set icone = alerta.icone_tipo == '1' ?
+				{% set icone = alerta.icone_tipo == '1' ?
 				'<i class="fa ' ~ alerta.icone ~ '" style="color: ' ~ alerta.cor_icone ~ '"></i>' :
 				'<img src="' ~ alerta.icone ~ '" alt="' ~ alerta.nome ~ '" />'
 			%}
 			{% if alerta.link %}
-			<p><a href="{{ alerta.link }}" target="{{ alerta.target }}">{{ icone|raw }} <span>{{ alerta.nome|raw }}</span></a></p>
+			<div class="item">
+				<a href="{{ alerta.link }}" target="{{ alerta.target }}">
+					<div class="thumb">{{ icone|raw }}</div>
+					<p style="background: transparent;">{{ alerta.nome|raw }}</p>
+				</a>
+			</div>
 			{% else %}
-			<p style="background-color: {{ alerta.cor_fundo }}">{{ icone|raw }} <span>{{ alerta.nome|raw }}</span></p>
+			<div class="item">
+				<div class="thumb">{{ icone|raw }}</div>
+				<p style="background: transparent;">{{ alerta.nome|raw }}</p>
+			</div>
 			{% endif %}
 		{% endfor %}
 	</div>

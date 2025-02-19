@@ -236,9 +236,9 @@
 					<div class="comentarios mb-4">
 						<div class="mt-3">
 							{% if extra.id not in session.curtidos %}
-							<a href="" class="btn btn-light curtir"><i class="fa fa-fw fa-heart-o text-danger"></i> Curtir</a>
+							<a href="" class="btn btn-light curtir"><i class="fa fa-fw fa-heart-o" style="color:#FFB000;"></i> Curtir</a>
 							{% else %}
-							<span class="btn btn-light disabled"><i class="fa fa-fw fa-heart text-success"></i> Curtiu!</span>
+							<span class="btn btn-light disabled"><img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-awesome-heart.png" alt=""> Curtiu!</span>
 							{% endif %}
 							<a href="" class="btn btn-light mymodal"
 								data-include="inc.php?meio=produtos_det_comentar&id={{ extra.id }}" data-width="400"
@@ -424,10 +424,7 @@
 			}
 		});
 
-		{
-			%
-			if produto.photos_type == '1' %
-		}
+		{% if produto.photos_type == '1' %}
 		$('.fotos .big').slick({
 			slidesToShow: 1,
 			slidesToScroll: 1,
@@ -475,9 +472,7 @@
 			if (newCurrent > total)
 				newCurrent = total;
 			$('.fotos .mini').slick('slickGoTo', newCurrent, true);
-		}); {
-			% elseif produto.photos_type == '2' %
-		}
+		}); {% elseif produto.photos_type == '2' %}
 		$('.fotos-carousel .carousel').slick({
 			slidesToShow: 2,
 			slidesToScroll: 1,
@@ -493,9 +488,7 @@
 
 		$('.fotos-carousel .setas .next').click(function () {
 			$('.fotos-carousel .carousel').slick('slickNext');
-		}); {
-			% endif %
-		}
+		}); {% endif %}
 
 		$('#produto .descricao .t').click(function (e) {
 			if ($(this).parents('.descricao').hasClass('hidden')) {
@@ -507,16 +500,11 @@
 			}
 		});
 
-		{
-			%
-			if geral.hasSmartHint %
-		}
+		{% if geral.hasSmartHint %}
 		SmartHint.Call('setPage', {
 			type: 'product',
 			data: {}
-		}); {
-			% endif %
-		}
+		}); {% endif %}
 
 		$('.curtir').click(function (e) {
 			e.preventDefault();

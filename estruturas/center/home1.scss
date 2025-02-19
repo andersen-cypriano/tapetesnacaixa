@@ -5,7 +5,7 @@
 
 #slider {
   width: 95%;
-  margin: 6rem auto 0 auto;
+  margin: 9rem auto 0 auto;
   text-align: center;
   overflow: hidden;
   border-radius: 0 0 6rem 6rem;
@@ -14,7 +14,7 @@
     float: left;
 
     img {
-      width: auto;
+      width: 100%!important;
       max-width: 100%;
       max-height: 800px;
       display: inline-block;
@@ -84,28 +84,23 @@
   > .central {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 4rem;
-    p {
-      background: transparent !important;
+    max-width: 100rem;
+    margin: 0 auto;
+    .item {
       width: 40%;
       display: flex;
-      gap: 4rem;
+      justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #000;
-      i {
-        width: 10rem;
-        height: 10rem;
-        background-color: #fff;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      span {
+      padding-bottom: 1.5rem;
+      .thumb {}
+      p {
+        width: 100%;
         font-size: 2.4rem;
-        text-align: left;
         color: #000;
+        line-height: 3rem;
       }
     }
   }
@@ -118,6 +113,10 @@
   color: #fff;
   padding: 5px 0;
   text-align: center;
+}
+div[id="alerts"] p img {
+  max-height: auto!important;
+  max-height: auto!important;
 }
 
 .titulo {
@@ -210,10 +209,30 @@
 
 #widget_avaliacoes {
   margin-bottom: 3rem;
+  .owl-item:not(.active) {
+    .item {
+      box-shadow: none;
+    }
+  }
+  .owl-item.cloned, .owl-item {
+    .item {
+      box-shadow: none;
+    }
+  }
   .itens {
     width: 100%;
     float: left;
-
+    .owl-stage-outer {
+      width: 90%;
+      margin: 0 auto;
+      padding: 2rem 0;
+      .owl-stage {
+        align-items: stretch!important;
+      }
+      .owl-item.active {
+        max-width: 31rem;
+      }
+    }
     .item {
       width: calc(100% - 6px);
       float: left;
@@ -224,7 +243,6 @@
       padding: 10px;
       border-radius: 4px;
       height: 100%;
-
       .votos {
         font-size: 22px;
         margin-bottom: 10px;
@@ -556,7 +574,7 @@ div[id^="vitrine_"] .produtos {
 
 @media screen and (max-width: 768px) {
   #slider {
-    margin: 2rem auto 0 auto !important;
+    margin: 6rem auto 0 auto !important;
     border-radius: 4rem;
     .owl-nav {
       display: block !important;
@@ -581,20 +599,30 @@ div[id^="vitrine_"] .produtos {
     padding: 15rem 0 10rem 0;
     > .central {
       flex-direction: column;
-      width: 95%;
-      margin: 0 auto;
-      p {
-        width: 100% !important;
-        margin: 0 auto;
-        gap: 1rem;
-        i {
-          width: 7rem;
-          height: 7rem;
-          min-width: 7rem;
+      max-width: 95%!important;
+      gap: 1rem!important;
+      .item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #000;
+        padding-bottom: 1.5rem;
+        .thumb {
+          width: 7.2rem!important;
+          img {
+            width: 100%!important;
+            max-height: auto;
+
+          }
         }
-        span {
+        p {
+          width: inherit!important;
           font-size: 1.8rem;
+          color: #000;
+          line-height: 3rem;
           text-wrap: wrap;
+          text-align: left;
         }
       }
     }
@@ -699,6 +727,67 @@ div[id^="vitrine_"] .produtos {
     }
     .info {
       width: 100%!important;
+    }
+    .owl-item:not(.active) {
+      .item {
+        box-shadow: none;
+      }
+    }
+    .owl-item.cloned, .owl-item {
+      .item {
+        box-shadow: none;
+      }
+    }
+    .itens {
+      width: 100%;
+      float: left;
+      .owl-stage-outer {
+        width: 90%;
+        margin: 0 auto;
+        padding: 2rem 0;
+        .owl-stage {
+          align-items: stretch!important;
+        }
+        .owl-item.active {
+          max-width: 29rem;
+        }
+      }
+      .item {
+        width: 80%!important;
+        float: none!important;
+        clear: both!important;
+        text-align: center;
+        margin: 0 auto!important;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 4px;
+        height: 100%;
+        .votos {
+          font-size: 22px;
+          margin-bottom: 10px;
+          color: #ddd;
+  
+          .fa-star {
+            color: #ffd700;
+          }
+        }
+  
+        .produto {
+          font-size: 14px;
+          line-height: 16px;
+          margin-bottom: 10px;
+  
+          a {
+            color: inherit;
+            text-decoration: underline !important;
+          }
+        }
+  
+        .comentario {
+          margin-bottom: 10px;
+        }
+      }
     }
   }
 }

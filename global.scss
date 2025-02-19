@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
 :root {
   --loja_fundo: #fff;
   --loja_fundo_imagem: inherit;
@@ -96,6 +97,8 @@
   --mt_amarelo: #ffb000;
   --mt_cinza: #707070;
   --mt_cinza_claro: #e1e1e1;
+
+  --fonte: "Montserrat", serif;
 }
 
 *,
@@ -109,6 +112,10 @@
 
 html {
   font-size: 62.5%; /* Now 10px = 1rem! */
+}
+
+body {
+  font-family: "Montserrat", serif!important;
 }
 
 // LISTAGEM DE PRODUTOS
@@ -129,17 +136,22 @@ html {
       margin-bottom: 0;
       span {
         margin-bottom: 0.8rem;
+        width: 22px!important;
+        height: 22px!important;
+        border: 0!important;
       }
     }
     .btn-cores {
       cursor: pointer;
       margin-bottom: 1.5rem;
+      color: #707070;
+      text-decoration: underline;
     }
 
     .show-tamanhos > span {
       display: inline-block !important;
     }
-    .variacoes span:nth-of-type(n + 4) {
+    .variacoes span:nth-of-type(n) {
       display: none;
     }
     .variacoes {
@@ -151,6 +163,8 @@ html {
     .btn-tamanhos {
       cursor: pointer;
       margin-bottom: 1.5rem;
+      color: #707070;
+      text-decoration: underline;
     }
 
     .more {
@@ -401,6 +415,7 @@ section[id="finish"] {
   padding: 13rem 0 5rem 0;
   h2.titulo {
     text-transform: uppercase;
+    margin-bottom: 2rem !important;
   }
 }
 
@@ -586,6 +601,139 @@ div[id="mymodal"] {
             display: none !important;
           }
         }
+      }
+    }
+  }
+}
+
+section[id="contato"] {
+  padding: 8rem !important;
+  h2.titulo {
+    margin-bottom: 2rem;
+  }
+  .bt-enviar {
+    background: var(--mt_amarelo) !important;
+    color: #fff;
+  }
+  form[id="form"] {
+    input,
+    select,
+    textarea {
+      border: 1px solid #000 !important;
+    }
+  }
+}
+
+.central:has(.titulo) {
+  .alert.alert-error.text-center {
+    padding: 10rem 0;
+  }
+}
+
+// LOGIN
+section[id="login"] {
+  .wrapper {
+    border-radius: 2rem!important;
+    border: 1px solid var(--mt_amarelo)!important;
+    > h3 {
+      font-weight: 600;
+    }
+    div[id="inc-login"] {
+      .frmAccessModal {
+        input {
+          border-radius: 1.2rem;
+        }
+        
+      }
+      button[type="submit"] {
+        width: 100%!important;
+        display: flex!important;
+        align-items: center!important;
+        justify-content: center;
+        background-color: #000!important;
+        border: 0!important;
+        height: 4rem!important;
+        font-size: 1.4rem!important;
+      }
+    }
+    .bt-login-global {
+      border-radius: 1.2rem;
+    }
+  }
+}
+
+.box-central-usuario {
+  padding-top: 6rem!important;
+}
+
+
+section[id="carrinho"] {
+  .cart-products {
+
+  }
+  .cart-conference {
+    .botoes {
+      a.bt-finaliza {
+        
+      }
+      a.bt-continuar {
+        
+      }
+    }
+  }
+}
+
+#carrinho .wrapper .resumo .itens .botoes a.bt-finalizar {
+  background: var(--mt_amarelo)!important;
+        border: 0!important;
+        color: #FFF!important;
+}
+#carrinho .wrapper .resumo .itens .botoes a.bt-continuar {
+  background: var(--mt_cinza)!important;
+  border: 0!important;
+  color: #FFF!important;
+}
+
+
+// CHECKOUT
+section[id="finish"] {
+  .box {
+    .header {
+      .step {
+        background-color: var(--mt_amarelo)!important;
+      }
+    }
+  }
+  .btn-success {
+    background: #000!important;
+    border: 0!important;
+    color: #FFF!important;
+    font-size: 1.3rem;
+  }
+}
+.btn-alterar {
+  background-color: #000!important;
+  color: #FFF!important;
+  border: 0!important;
+}
+#finish .main .enderecos-lista .item, #finish-mobile .main .enderecos-lista .item {
+  background-color: transparent!important;
+
+}
+#finish .lista-inputs .item, #finish-mobile .lista-inputs .item {
+  background-color: transparent!important;
+
+}
+
+@media(max-width: 768px) {
+  .produtos {
+    .variacoes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      > span {
+        width: 46%!important;
+        font-size: .9rem!important;
       }
     }
   }

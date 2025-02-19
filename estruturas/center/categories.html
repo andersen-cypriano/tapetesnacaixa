@@ -253,7 +253,7 @@
 			</div>
 
 			<!-- {% if dados.page.hasMenuLateral %}
-			<div class="cln p d-none d-md-block">
+			<div class="cln p d-none" >
 				<div class="block d-block d-md-none text-center filtrar">
 					<h4 class="t"><span class="border border-dark p-2 d-inline-block">FILTRAR <i class="fa fa-caret-down"></i></span></h4>
 				</div>
@@ -376,7 +376,7 @@
 				{% endif %}
 
 				<!--
-				<div class="produtos">
+				<div class="produtos d-none" id="infos-cores">
 					<div class="row">
 						{% for produto in dados.products.data %}
 						<div class="{{dados.page.hasMenuLateral ? 'col-md-4' : 'col-md-3' }} {{ dados.page.mobile.coluna_dupla ? 'col-6' : 'col-12' }}">

@@ -58,7 +58,7 @@ const createVariantsButtonFromProductList = {
     document.querySelectorAll(".produtos .item .variacoes").forEach((element) => {
       const btnCores = document.createElement("div");
       btnCores.classList.add("btn-tamanhos");
-      btnCores.textContent = "mais tamanhos";
+      btnCores.textContent = "ver tamanhos";
       element.after(btnCores.cloneNode(true));
     });
   },

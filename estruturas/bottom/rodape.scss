@@ -209,9 +209,9 @@ footer {
       display: flex;
       align-items: center;
       a[id="btLogo"] {
-        width: 12rem;
+        width: 6.6rem;
         img {
-          width: 100%
+          width: 100%;
         }
       }
       .box {
@@ -268,18 +268,18 @@ footer {
   background: var(--mt_amarelo);
   float: none;
   clear: both;
-  padding: 3rem 1rem;
+  padding: 1rem;
   > .central {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0;
     .titulo {
       font-size: 1.4rem;
       color: #fff;
       text-transform: uppercase;
       font-size: 500;
-      margin: 0 0 3rem 0;
+      margin: 0;
       &:after {
         display: none;
       }
@@ -287,19 +287,21 @@ footer {
     .content {
       display: flex;
       align-items: center;
-      gap: 10rem;
+      width: 70%;
+      justify-content: space-between;
       a[id="btLogo"] {
-        width: 12rem;
+        width: 17%;
         img {
-          width: 100%
+          width: 6.6rem;
         }
       }
     }
     .box {
+      width: 83%;
       form {
         display: flex;
         gap: 3rem;
-        justify-content: space-between;
+        justify-content: center;
         input {
           width: 25rem;
           border: 0;
@@ -394,6 +396,14 @@ footer#rodape {
   padding: 3rem 0;
   float: none;
   clear: both;
+  span[id="scrollToTop"] {
+    position: relative;
+    right: 6rem;
+    bottom: 1rem;
+    width: 3rem;
+    height:3rem;
+    background: transparent;
+  }
   > .central {
     display: flex;
     justify-content: space-between;
@@ -415,7 +425,8 @@ footer#rodape {
           display: block;
           color: #fff;
           text-align: left;
-          margin-bottom: 1rem;
+          margin-bottom: 2.7rem;
+          font-size: 1.2rem;
         }
       }
       .lista {
@@ -436,11 +447,24 @@ footer#rodape {
         gap: 1rem;
       }
     }
+    .col-footer.item-atendimento {
+      width: 16%;
+    }
     .content-seguranca {
       display: flex;
       flex-direction: column;
       a {
         display: inline-flex;
+      }
+      .selo-avaliacoes {
+        color: #FFF !important;
+        margin-bottom: 1rem;
+      }
+      .selo-google {
+        padding: 1rem;
+        background: #FFF;
+        border-radius: 1rem;
+        width: 12rem;
       }
     }
   }
@@ -455,7 +479,22 @@ footer#rodape {
 }
 
 @media (max-width: 768px) {
+  span[id="scrollToTop"] {
+    right: -1rem!important;
+    z-index: 1!important;
+  }
   .news {
+    padding: 4rem 0;
+    h3.titulo {
+      margin: 0 0 3rem 0!important;
+    }
+    a[id=btLogo] {
+      width: 17%!important;
+      margin-bottom: 3rem;
+      img {
+        width: 100%!important;
+      }
+    }
     .content {
       flex-direction: column;
       gap: 2rem;

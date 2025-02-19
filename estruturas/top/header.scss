@@ -423,6 +423,18 @@ header {
   }
 }
 
+
+.content-oferta {
+  > div {
+    float: none!important;
+    clear: both!important;
+    .ofertas-periodicas {
+      float: none!important;
+      clear: both!important;
+    }
+  }
+}
+
 // responsive
 
 @media screen and (max-width: 1024px) {
@@ -461,6 +473,8 @@ header {
       margin: 10px;
     }
   }
+
+
 }
 
 @media screen and (max-width: 598px) {
@@ -628,7 +642,19 @@ header {
 }
 
 @media screen and (max-width: 768px) {
+  .content-oferta {
+    background: var(--mt_amarelo);
+    .ofertas-periodicas {
+      width: 93%!important;
+      margin: 0 auto;
+    }
+  }
   // HEADER
+  header {
+    > div.central {
+      position: relative;
+    }
+  }
   .openmenu {
     width: 2.4rem;
     margin: 0 !important;
@@ -641,6 +667,7 @@ header {
     display: flex;
     flex-direction: column-reverse;
     z-index: 300;
+    padding: 0 !important;
     i {
       font-size: 2.2rem;
       &::before {
@@ -651,6 +678,7 @@ header {
       color: var(--mt_amarelo) !important;
       font-size: 1rem !important;
       margin-bottom: 0.3rem;
+      margin-top: 0 !important;
     }
   }
   .wrapper-header {
@@ -758,6 +786,7 @@ header {
       }
     }
   }
+
 }
 @media screen and (max-width: 425px) {
 }

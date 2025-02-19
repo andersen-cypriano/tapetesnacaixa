@@ -11,10 +11,13 @@
 {% if page != 'login' and page != 'shop_cart' and not global.var_desabilita_news %}
     <div class="news">
        <div class="central">
+           <a href="./" id="btLogo" aria-label="{{ seo.title }}" class="d-block d-sm-none">
+               <img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/logo-tapetes.png" alt="">
+           </a>
         <h3 class="titulo">{{ widgetNews.title }}</h3>
         <div class="content">
-            <a href="./" id="btLogo" aria-label="{{ seo.title }}">
-                <img src="{{ store.getLogo() }}" alt="">
+            <a href="./" id="btLogo" aria-label="{{ seo.title }}" class="d-none d-sm-block">
+                <img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/logo-tapetes.png" alt="">
             </a>
             <div class="box">
                 <!-- <p>{{ widgetNews.subtitle1 }}<br>{{ widgetNews.subtitle2 }}</p> -->
@@ -76,6 +79,7 @@
             </div>
         </div>
     </div>
+    <span id="scrollToTop" class="show"><img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/arrow-up.png" alt=""></span>
     <div class="content-dev">
         {{ footerText.rodape|raw }}
     </div>

@@ -2,8 +2,11 @@
 {% set categorias = store.categories() %}
 {% set categorias_menu = store.categoriesMenu() %}
 
+
 <header class="block">
-	<component data-modulo="ofertasperiodicas" loading="false" data-paddingtop="true" data-hidescroll="true"></component>
+	<div class="content-oferta" style="float:none; clear:both;">
+		<component data-modulo="ofertasperiodicas" loading="false" data-paddingtop="false" data-hidescroll="false"></component>
+	</div>
 	<div class="central">
 		<div class="mobile-inc"></div>
 		<span class="openmenu">
@@ -21,7 +24,7 @@
 					<a href="/">Inicio</a>
 				</li>
 				<li>
-					<a href="/quem-somos">Quem Somos</a>
+					<a href="/m/quem-somos">Quem Somos</a>
 				</li>
 				<li>
 					<a href="/fale-conosco">Fale Conosco</a>
