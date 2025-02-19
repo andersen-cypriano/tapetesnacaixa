@@ -347,7 +347,7 @@
 		<div class="central">
 			<h2 class="titulo mb-3">PRODUTOS RELACIONADOS</h2>
 			<div class="produtos">
-				<div class="row justify-content-center">
+				<div class="row justify-content-center" id="content-itens-relacionados">
 					{% for produto in relacionados %}
 					<div class="col-md-3">
 						{{ include('widgets/box-do-produto.html') }}
@@ -536,5 +536,15 @@
 				e.target.previousSibling.classList.toggle('show-tamanhos');
 			})
 		})
+
+
+		
+		if(window.matchMedia("(max-width: 768px)")) {
+			$('#content-itens-relacionados').slick({
+				infinite: true,
+				slidesToShow: 2,
+				slidesToScroll: 1
+			});
+		}
 	});
 </script>

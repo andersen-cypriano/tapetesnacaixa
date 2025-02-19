@@ -1,5 +1,5 @@
 section[id="produto"] {
-  padding-top: 10rem;
+  padding-top: 10rem!important;
   nav[arial-label="breadcrumb"] {
     margin-bottom: 3rem !important;
   }
@@ -279,11 +279,22 @@ section.produtos-relacionados {
 }
 
 @media (max-width: 768px) {
+  #produto {
+  }
+  .produtos-relacionados {
+    padding: 0 1rem!important;
+    .titulo {
+      font-size: 2rem!important;
+    }
+    .produtos {
+    }
+  }
   .variacoes {
     .list {
       display: flex;
       flex-wrap: wrap;
       > div {
+        width: 23%!important;
         padding: 0 !important;
         font-size: 1rem;
       }

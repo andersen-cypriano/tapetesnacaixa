@@ -15,8 +15,10 @@ const useMenuMobile = {
     });
 
     const btnClose = document.querySelector(".topo-links .close");
+    
     btnClose.addEventListener("click", () => {
       document.querySelector(".links").classList.remove("show-menu-mobile");
+      document.querySelector('body').classList.remove('no-scroll');
     });
   },
   init: function () {
@@ -76,4 +78,4 @@ window.addEventListener("load", () => {
   });
 });
 
-console.log("dev 6.0");
+console.log("dev 7.0");
