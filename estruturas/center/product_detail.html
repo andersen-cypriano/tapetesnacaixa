@@ -236,9 +236,12 @@
 					<div class="comentarios mb-4">
 						<div class="mt-3">
 							{% if extra.id not in session.curtidos %}
-							<a href="" class="btn btn-light curtir"><i class="fa fa-fw fa-heart-o" style="color:#FFB000;"></i> Curtir</a>
+							<a href="" class="btn btn-light curtir"><i class="fa fa-fw fa-heart-o" style="color:#FFB000;"></i>
+								Curtir</a>
 							{% else %}
-							<span class="btn btn-light disabled"><img src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-awesome-heart.png" alt=""> Curtiu!</span>
+							<span class="btn btn-light disabled"><img
+									src="https://cdn.sistemawbuy.com.br/arquivos/e6842bacaa63df62bcb0ec463cfb8dda/templates/mt-theme/assets/icon-awesome-heart.png"
+									alt=""> Curtiu!</span>
 							{% endif %}
 							<a href="" class="btn btn-light mymodal"
 								data-include="inc.php?meio=produtos_det_comentar&id={{ extra.id }}" data-width="400"
@@ -424,7 +427,7 @@
 			}
 		});
 
-		{% if produto.photos_type == '1' %}
+		{%	if produto.photos_type == '1' %}
 		$('.fotos .big').slick({
 			slidesToShow: 1,
 			slidesToScroll: 1,
@@ -537,14 +540,31 @@
 			})
 		})
 
+		const createTagOff = {
+		createTag: function (content) {
+			const tag = document.createElement('div');
+			tag.classList.add('tag_product_desconto');
 
-		
-		if(window.matchMedia("(max-width: 768px)")) {
+			tag.textContent = document.querySelector('#produto .desconto span').textContent.split('de ')[1] + ' OFF';
+			document.querySelector('#produto .desconto').remove();
+			document.querySelector(content).prepend(tag)
+		},
+		init: function () {
+			window.matchMedia("(max-width: 768px)").matches ? this.createTag('#produto .mobile-fotos') : this.createTag('#produto .fotos .big')
+			console.log('init flag 2');
+		}
+	}
+
+	document.querySelector('#produto .desconto') ? createTagOff.init() : null;
+
+		if (window.matchMedia("(max-width: 768px)").matches) {
 			$('#content-itens-relacionados').slick({
 				infinite: true,
 				slidesToShow: 2,
 				slidesToScroll: 1
 			});
 		}
+
 	});
+	
 </script>
