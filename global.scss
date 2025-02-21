@@ -373,6 +373,14 @@ main.categorias {
               width: 100%;
               flex-wrap: wrap;
               gap: 1rem;
+              > a {
+                font-size: 0;
+                width: 22px !important;
+                height: 22px !important;
+                border: 0 !important;
+                border-radius: 50%;
+                background-size: cover;
+              }
             }
           }
           .vars {
@@ -851,6 +859,9 @@ section[id="finish"] {
 }
 
 @media (max-width: 768px) {
+  .mobile-filtro {
+    top: 12rem!important;
+  }
   #departamentos {
     .produtos {
       margin-top: 5rem;

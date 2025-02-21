@@ -465,6 +465,16 @@
 
 		{{ dados.page.seo_scripts|raw }}
 		<script>
+			function createThumbToColorFilter() {
+			const arrAllColors = Array.from(document.querySelectorAll(".cores span"));
+
+			document.querySelectorAll(".drop-list .colors a").forEach((element) => {
+				const bgColor = arrAllColors.find(
+					(color) => color.getAttribute("title") === element.textContent
+				);
+				element.style.cssText = `${bgColor.getAttribute('style')}`
+			});
+		}
 			window.addEventListener('load', () => {
 				function setEventButton() {
 					document.querySelectorAll('.btn-cores').forEach(element =>{
@@ -479,8 +489,9 @@
 					})
 				}
 				setEventButton();
+
+				document.querySelector(".drop-list .colors a") ? createThumbToColorFilter() : null;
 			})
-			console.log('teste5');
 		</script>
 	</main>
 </div>
