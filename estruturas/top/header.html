@@ -130,21 +130,21 @@
 											</li>
 											{% endif %}
 											{% for level2 in categoria.subs %}
-											{% if level2.tipo == '2' %}
-											<li><a href="{{ level2.categoria_link }}" target="{{ level2.categoria_target }}"><i
-														class="fa fa-caret-right muted"></i> {{ level2.nome }}</a></li>
-											{% else %}
-											<li><a href="{{ level2.url }}"><i class="fa fa-caret-right muted"></i> {{ level2.nome }}</a></li>
-											{% endif %}
-	
-											{% for level3 in level2.subs %}
-											{% if level3.tipo == '2' %}
-											<li class="indent"><a href="{{ level3.categoria_link }}" target="{{ level3.categoria_target }}">-
-													{{ level3.nome }}</a></li>
-											{% else %}
-											<li class="indent"><a href="{{ level3.url }}">- {{ level3.nome }}</a></li>
-											{% endif %}
-											{% endfor %}
+												{% if level2.tipo == '2' %}
+												<li><a href="{{ level2.categoria_link }}" target="{{ level2.categoria_target }}"><i
+															class="fa fa-caret-right muted"></i> {{ level2.nome }}</a></li>
+												{% else %}
+												<li><a href="{{ level2.url }}"><i class="fa fa-caret-right muted"></i> {{ level2.nome }}</a></li>
+												{% endif %}
+		
+												{% for level3 in level2.subs %}
+												{% if level3.tipo == '2' %}
+												<li class="indent"><a href="{{ level3.categoria_link }}" target="{{ level3.categoria_target }}">-
+														{{ level3.nome }}</a></li>
+												{% else %}
+												<li class="indent"><a href="{{ level3.url }}">- {{ level3.nome }}</a></li>
+												{% endif %}
+												{% endfor %}
 											{% endfor %}
 										</ul>
 										{% endfor %}
@@ -193,15 +193,18 @@
 												</a>
 											</li>
 											{% endif %}
-	
-											{% for level3 in level2.subs %}
-											{% if level3.tipo == '2' %}
-											<li><a href="{{ level3.categoria_link }}" target="{{ level3.categoria_target }}"><i
-														class="fa fa-caret-right muted"></i> {{ level3.nome }}</a></li>
-											{% else %}
-											<li><a href="{{ level3.url }}"><i class="fa fa-caret-right muted"></i> {{ level3.nome }}</a></li>
-											{% endif %}
-											{% endfor %}
+											<li class="drop" id="teste">
+												<ul>
+													{% for level3 in level2.subs %}
+														{% if level3.tipo == '2' %}
+														<li><a href="{{ level3.categoria_link }}" target="{{ level3.categoria_target }}"><i
+																	class="fa fa-caret-right muted"></i> {{ level3.nome }}</a></li>
+														{% else %}
+														<li><a href="{{ level3.url }}"><i class="fa fa-caret-right muted"></i> {{ level3.nome }}</a></li>
+														{% endif %}
+													{% endfor %}
+												</ul>
+											</li>
 										</ul>
 										{% endfor %}
 									</div>
@@ -268,4 +271,6 @@
 					{% endif %}
 			}, 'json');
 	});
+	document.querySelector('nav li:has(a[href="tapetes/"])').style.cssText = 'display: block!important;';
+	console.log('header!!!')
 	</script>

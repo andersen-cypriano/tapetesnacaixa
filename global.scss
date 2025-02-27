@@ -266,6 +266,15 @@ main.categorias {
   padding: 0 !important;
   width: 100% !important;
 }
+#seo_info {
+  font-size: 2rem;
+  line-height: 2.3rem;
+  color: var(--mt_cinza);
+  padding: 0 5rem;
+  float: none;
+  clear: both;
+  margin-top: 2rem;
+}
 #departamentos {
   padding-top: 10rem;
   .alert-info {
@@ -276,6 +285,7 @@ main.categorias {
   }
   > .cln.s:has(.produtos) {
     width: 100% !important;
+    
   }
   .produtos {
     margin-top: 5rem;
@@ -660,7 +670,7 @@ div[id="mymodal"] {
 }
 
 section[id="contato"] {
-  padding: 8rem !important;
+  padding: 12rem !important;
   h2.titulo {
     margin-bottom: 2rem;
   }
@@ -859,6 +869,12 @@ section[id="finish"] {
 }
 
 @media (max-width: 768px) {
+  #seo_info {
+    font-size: 1.4rem!important;
+    margin-top: 2rem;
+    text-align: center!important;
+    padding: 0;
+  }
   .mobile-filtro {
     top: 12rem!important;
   }

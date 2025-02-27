@@ -1,7 +1,7 @@
 {% set bannerVideoDuplo = store.publicityBanner({tipo:'22', limit:'2'}) %}
 
 {% if bannerVideoDuplo|length > 0 %}
-<div class="content">
+<div class="content" style="display:flex;">
     {% for banner in bannerVideoDuplo %}
         {{ banner.raw|raw }}
     {% endfor %}

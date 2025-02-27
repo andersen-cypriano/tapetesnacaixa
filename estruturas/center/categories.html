@@ -61,6 +61,11 @@
 			{% endif %}
 
 			<h2 class="titulo my-0 mb-3">{{ dados.page.title|upper }}</h2>
+			{% if dados.page.infotexto %}
+				<div id="seo_info" class="texto mb-4">
+					{{ dados.page.infotexto|raw }}
+				</div>
+				{% endif %}
 			<p class="text-muted mb-3 d-block d-md-none">
 				<span>{{ dados.products.total ~ plural(dados.products.total, ' ', 'produto encontrado', 'produtos encontrados') }}</span>
 			</p>
@@ -369,13 +374,9 @@
 					{{ dados.page.banner_raw|raw }}
 				</div>
 				{% endif %}
-				{% if dados.page.infotexto %}
-				<div id="seo_info" class="texto mb-4">
-					{{ dados.page.infotexto|raw }}
-				</div>
-				{% endif %}
+				
 
-				<!--
+				
 				<div class="produtos d-none" id="infos-cores">
 					<div class="row">
 						{% for produto in dados.products.data %}
@@ -391,7 +392,7 @@
 						{% endfor %}
 					</div>
 				</div>
-				-->
+				
 
 				<div class="produtos">
 					<div class="row">
@@ -466,6 +467,8 @@
 		{{ dados.page.seo_scripts|raw }}
 		<script>
 			function createThumbToColorFilter() {
+
+			window.location.search.split('?cor').length > 1 ? document.querySelector('.filtro-suspenso .drop-list .colors').remove() : null;
 			const arrAllColors = Array.from(document.querySelectorAll(".cores span"));
 
 			document.querySelectorAll(".drop-list .colors a").forEach((element) => {
@@ -491,6 +494,7 @@
 				setEventButton();
 
 				document.querySelector(".drop-list .colors a") ? createThumbToColorFilter() : null;
+				console.log('info cores')
 			})
 		</script>
 	</main>

@@ -216,6 +216,23 @@ section[id="produto"] {
           float: none !important;
           clear: both !important;
           display: block !important;
+          &:nth-of-type(1) {
+            margin-bottom: 1rem!important;
+          }
+        }
+        .itens {
+          margin-bottom: 2rem!important;
+          .item {
+            .h {
+              span {
+                color: #000;
+              }
+            }
+            .c {
+              font-size: 1.4rem!important;
+              color: var(--mt_cinza);
+            }
+          }
         }
       }
       div:has(.product_share) {
