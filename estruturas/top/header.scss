@@ -637,33 +637,26 @@ header {
         > li:has(> .drop) {
           position: relative;
           > .drop {
-            position: absolute;
-            width: 40rem;
-            height: 40rem;
-            top: 4rem;
+            width: auto;
             .central {
               .grid {
                 ul.list {
-                  width: auto;
+                  position: relative;
+                  width: 100%;
                   display: block;
-                  vertical-align: top;
+                  vertical-align: auto;
                   margin-bottom: 15px;
                   float: none;
-                }
-                > ul.list:has(> li.drop) {
-                  
-                  li {
-                    position: relative;
-                    > ul {
-                      position: absolute;
-                      width: 40rem;
-                      height: 40rem;
-                      top: 4rem;
-                      display: flex;
-                      flex-direction: column;
+                  clear: both;
+                  > li {
+                    float: none;
+                    clear: both;
+                    > .drop {
+                      display: none;
                     }
                   }
                 }
+                
               }
             }
           }

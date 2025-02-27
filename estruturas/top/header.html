@@ -193,7 +193,7 @@
 												</a>
 											</li>
 											{% endif %}
-											<li class="drop" id="teste">
+											<li class="drop" id="submenu">
 												<ul>
 													{% for level3 in level2.subs %}
 														{% if level3.tipo == '2' %}
@@ -272,5 +272,8 @@
 			}, 'json');
 	});
 	document.querySelector('nav li:has(a[href="tapetes/"])').style.cssText = 'display: block!important;';
-	console.log('header!!!')
+	document.querySelectorAll('li[id="teste"] > ul').forEach(element => {
+		element.children.length === 0 ? element.parentElement.remove() : null
+	})
+	console.log('header@');
 	</script>
