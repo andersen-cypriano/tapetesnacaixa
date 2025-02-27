@@ -186,14 +186,11 @@
 												</a>
 											</li>
 											{% else %}
-											<li class="t">
+											<li class="t" submenu>
 												<a href="{{ level2.url }}">
 													{{ level2.icone_categoria|raw }}
 													{{ level2.nome }}
 												</a>
-											</li>
-											{% endif %}
-											<li class="drop" id="submenu">
 												<ul>
 													{% for level3 in level2.subs %}
 														{% if level3.tipo == '2' %}
@@ -205,6 +202,7 @@
 													{% endfor %}
 												</ul>
 											</li>
+											{% endif %}
 										</ul>
 										{% endfor %}
 									</div>

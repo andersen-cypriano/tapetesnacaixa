@@ -638,20 +638,47 @@ header {
           position: relative;
           > .drop {
             width: auto;
+            top: 2.8rem;
+            padding: 1rem 0;
+            background: transparent;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0);
             .central {
+              width: 20rem;
+              background: #FFF;
+              border: 1px solid #E1E1E1;
+              border-radius: 0 0 15px 15px;
+              padding: 1rem 0;
               .grid {
                 ul.list {
                   position: relative;
                   width: 100%;
                   display: block;
                   vertical-align: auto;
-                  margin-bottom: 15px;
+                  margin-bottom: 0;
                   float: none;
                   clear: both;
                   > li {
                     float: none;
                     clear: both;
-                    > .drop {
+                    a {
+                      font-size: 1.4rem;
+                      font-weight: 400;
+                      width: 100%;
+                      display: block;
+                      &:hover {
+                        background: var(--mt_amarelo)
+                      }
+                    }
+                  }
+                  > li:has(> ul) {
+                    a {
+                      float: none;
+                      clear: both;
+                      font-size: 1.4rem;
+                      font-weight: 400;
+                    }
+                    > ul {
+                      flex-direction: column;
                       display: none;
                     }
                   }
