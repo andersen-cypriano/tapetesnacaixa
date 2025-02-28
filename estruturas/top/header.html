@@ -269,9 +269,11 @@
 					{% endif %}
 			}, 'json');
 	});
+
+	// REMOVE SUBMENUS VAZIOS
 	document.querySelector('nav li:has(a[href="tapetes/"])').style.cssText = 'display: block!important;';
 	document.querySelectorAll('li[id="teste"] > ul').forEach(element => {
 		element.children.length === 0 ? element.parentElement.remove() : null
 	})
-	console.log('header@');
+
 	</script>

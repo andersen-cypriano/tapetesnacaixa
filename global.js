@@ -8,6 +8,15 @@ const isElementLoaded = async (selector) => {
 };
 
 const useMenuMobile = {
+  setSubMenuMobile: function () {
+    document.querySelectorAll('nav li:has(.drop) > a').forEach(element => {
+      element.addEventListener('click', e => {
+          e.preventDefault();
+          element.parentElement.classList.toggle('sub-menu-mobile-ativo')
+          element.nextElementSibling.classList.toggle('show-sub-menu-mobile')
+      })
+    })
+  },
   setEventClick: function () {
     const btnMenu = document.querySelector(".openmenu");
     btnMenu.addEventListener("click", () => {
@@ -23,6 +32,7 @@ const useMenuMobile = {
   },
   init: function () {
     this.setEventClick();
+    this.setSubMenuMobile();
   },
 };
 

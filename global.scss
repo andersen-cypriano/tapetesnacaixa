@@ -881,6 +881,13 @@ section[id="finish"] {
   #departamentos {
     .produtos {
       margin-top: 5rem;
+      .col:has(.alert-info) {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+      .alert-info {
+        width: 100%;
+      }
       > .row {
         > div {
           flex: 0 0 50%;
