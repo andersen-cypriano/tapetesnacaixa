@@ -16,7 +16,22 @@ const useMenuMobile = {
           element.nextElementSibling.classList.toggle('show-sub-menu-mobile')
       })
     })
+
+    // Set submenu3
+    document.querySelectorAll('li ul[submenu3]:has(li)').forEach(element => {
+      const arrow = document.createElement('span');
+      arrow.classList = 'fa fa-angle-down';
+      element.parentElement.children[0].appendChild(arrow);
+
+
+      element.previousElementSibling.addEventListener('click', e => {
+        e.preventDefault();
+        element.classList.toggle('show-submenu3')
+      })
+    })
+    console.log('submenu16')
   },
+  
   setEventClick: function () {
     const btnMenu = document.querySelector(".openmenu");
     btnMenu.addEventListener("click", () => {
