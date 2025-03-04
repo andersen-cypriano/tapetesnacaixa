@@ -632,7 +632,6 @@ header {
             border-bottom: 0 !important;
             padding: 0;
           }
-          
         }
         > li:has(> .drop) {
           position: relative;
@@ -645,8 +644,8 @@ header {
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0);
             .central {
               width: 20rem;
-              background: #FFF;
-              border: 1px solid #E1E1E1;
+              background: #fff;
+              border: 1px solid #e1e1e1;
               border-radius: 0 0 15px 15px;
               padding: 1rem 0;
               .grid {
@@ -679,7 +678,7 @@ header {
                     &:hover {
                       > a {
                         + ul {
-                          display: block!important;
+                          display: block !important;
                         }
                       }
                     }
@@ -694,28 +693,25 @@ header {
                       padding: 1rem 0;
                       li {
                         &:hover {
-                          background-color: #FFF!important;
+                          background-color: #fff !important;
                         }
                         i {
                           display: none;
                         }
                         a {
-                          padding: .5rem 2rem .5rem 1rem;
+                          padding: 0.5rem 2rem 0.5rem 1rem;
                           width: 100%;
                           display: block;
-                          background: transparent!important;
+                          background: transparent !important;
                         }
                       }
                     }
                   }
-                  
                 }
-                
               }
             }
           }
         }
-        
       }
     }
   }
@@ -822,6 +818,10 @@ header {
     padding: 2rem !important;
     transform: translateX(-100%);
     display: block !important;
+
+    float: none;
+    clear: both;
+    overflow-y: scroll;
     .close {
       position: absolute;
       top: 1.5rem;
@@ -872,7 +872,7 @@ header {
           display: block !important;
           border-bottom: 1px solid rgba(112, 112, 112, 0.5) !important;
           padding-bottom: 1rem !important;
-          transition: all .3s ease;
+          transition: all 0.3s ease;
           > a {
             width: 100%;
             display: block;
@@ -880,7 +880,7 @@ header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            
+
             span.fa-angle-down {
               color: var(--mt_amarelo);
               transform: rotate(-90deg);
@@ -889,38 +889,63 @@ header {
           > .drop {
             display: none;
           }
-          > div.show-sub-menu-mobile {
+          > div[class~="show-sub-menu-mobile"] {
             display: block !important;
-            background: #FFFBF0!important;
-            padding: 0!important;
+            background: #fffbf0 !important;
+            padding: 0 !important;
+            .central {
+              .grid {
+                > ul.list {
+                  > li {
+                    ul[submenu3] {
+                      position: relative!important;
+                      left: 0!important;
+                      top: 0!important;
+                      display: block!important;
+                      background-color: rgba(0, 0, 0, 0);
+                      border-radius: 0;
+                      padding: 1rem 0;
+                      opacity: 1;
+                      overflow: visible!important;
+                      background: transparent!important;
+                      li {
+                        float: none;
+                        clear: both;
+                        border: 0 !important;
+                      }
+                      
+                    }
+                  }
+                }
+              }
+            }
           }
         }
         li.sub-menu-mobile-ativo {
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0)!important;
-          border: 0!important;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0) !important;
+          border: 0 !important;
           .central {
             background: transparent !important;
-            border: 0!important;
+            border: 0 !important;
 
-            padding: 0!important;
+            padding: 0 !important;
             ul {
               li[submenu] {
-                padding: .5rem 0!important;
-                background-color: transparent!important;
+                padding: 0.5rem 0 !important;
+                background-color: transparent !important;
                 border: 0 !important;
                 a {
-                  background-color: transparent!important;
+                  background-color: transparent !important;
                 }
               }
             }
           }
           > a {
             span.fa-angle-down {
-              transform: rotate(0deg)!important;
+              transform: rotate(0deg) !important;
             }
-          } 
+          }
         }
-        
       }
     }
   }
