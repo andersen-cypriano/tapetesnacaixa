@@ -413,7 +413,7 @@
 
 				{% if dados.pagination.page_total > 1 %}
 				<div class="row divider mb-4">
-					<div class="col text-center">
+					<div class="col text-center" id="paginacao">
 						{{ dados.pagination.page_prev ? ('<a href="' ~ dados.pagination.page_prev ~ '" class="btn btn-sm btn-outline-dark"><i class="fa fa-caret-left fa-fw"></i> Página anterior</a>')|raw : '<span class="btn btn-sm btn-outline-dark disabled"><i class="fa fa-caret-left fa-fw"></i> Página anterior</span>' }}
 						<select class="border border-dark mx-1" onChange="location.href=this.value;"
 							style="height: 31px; display: inline-block; vertical-align: middle; padding: 0 5px; background-color: transparent;">
