@@ -408,27 +408,36 @@ main.categorias {
   .row:has(.orderby) {
     display: none !important;
   }
-
+  
   #paginacao {
-    select {
-      height: 4rem!important;
-      display: inline-block!important;
-      vertical-align: middle!important;
-      padding: 0 2rem!important;
-      background-color: transparent!important;
-      border-radius: 2rem!important;
-      border: 1px solid var(--mt_amarelo) !important;
-    }
-    .btn-sm {
-      padding: 1rem;
-      line-height: 1.5;
-      font-size: 1.2rem;
-      font-weight: 600;
-      border-radius: 2rem!important;
-      border: 1px solid var(--mt_amarelo);
-      background: var(--mt_amarelo);
-    }
+    
   }
+}
+#departamentos {
+  .cln:has(> .produtos) {
+    .divider {
+      > div {
+        select {
+          height: 4rem!important;
+          display: inline-block!important;
+          vertical-align: middle!important;
+          padding: 0 2rem!important;
+          background-color: transparent!important;
+          border-radius: 2rem!important;
+          border: 1px solid var(--mt_amarelo) !important;
+        }
+        .btn-sm {
+          padding: 1rem;
+          line-height: 1.5;
+          font-size: 1.2rem;
+          font-weight: 600;
+          border-radius: 2rem!important;
+          border: 1px solid var(--mt_amarelo);
+          background: var(--mt_amarelo);
+        }
+      }
+    }
+  } 
 }
 section#avaliacoes:is(.interno) {
   padding-top: 12rem!important;
