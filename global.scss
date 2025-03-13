@@ -430,6 +430,9 @@ main.categorias {
     }
   }
 }
+section#avaliacoes:is(.interno) {
+  padding-top: 12rem!important;
+}
 
 // CARRINHO SUSPENSO
 .suspended-cart {
